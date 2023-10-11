@@ -1,6 +1,5 @@
 package HomeTask05;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -16,31 +15,38 @@ public class Task0502 {
         int count = 3;
         int[] arr01 = new int[count];
         int[] arr02 = new int[count];
-        int start01 = 0;
-        int end01 = count - 1;
-        int start02 = 0;
-        int end02 = count - 1;
+        int stop = 0;
+        int indexArr01 = 0;
+        int indexArr02 = 0;
+
         Scanner sc = new Scanner(System.in);
 
-
-        while (!(start01 == count) && !(start02 == count)) {
-                int value = sc.nextInt();
-                if (value < 0 && start01 < count) {
-                    arr01[start01] = value;
-                    start01++;
-                } else if (value > 0 && start02 < count) {
-                    arr02[start02] = value;
-                    start02++;
+        while (stop < arr01.length + arr02.length) {   // С ЭТИМ УСЛОВИЕМ РАБОТАЕТ ! )
+            int value = sc.nextInt();
+            if (value == 0) {
+                break;
+            }
+            if (value < 0) {
+                if (arr01[indexArr01] == 0) {
+                    arr01[indexArr01] = value;
+                    if (indexArr01 < arr01.length - 1)
+                        indexArr01++;
+                    stop++;
                 }
-                if (value == 0) {
-                    break;
+            } else if (value > 0) {
+                if (arr02[indexArr02] == 0) {
+                    arr02[indexArr02] = value;
+                    if (indexArr02 < arr02.length - 1)
+                        indexArr02++;
+                    stop++;
+                }
             }
         }
-        System.out.println(Arrays.toString(arr01));
-        System.out.println(Arrays.toString(arr02));
+            System.out.println(Arrays.toString(arr01));
+            System.out.println(Arrays.toString(arr02));
+            }
+        }
 
-    }
-}
 
 
 //        int indexArr01 = 0;
