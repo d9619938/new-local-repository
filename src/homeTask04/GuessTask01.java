@@ -1,4 +1,4 @@
-package HomeTask04;
+package homeTask04;
 import java.util.Scanner;
 public class GuessTask01 {
     public static void main(String[] args) {

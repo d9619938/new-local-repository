@@ -1,4 +1,4 @@
-package HomeTask02;
+package homeTask02;
 
 
 public class ArithmeticTask {

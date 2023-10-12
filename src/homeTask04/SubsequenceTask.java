@@ -1,4 +1,4 @@
-package HomeTask04;
+package homeTask04;
 
 public class SubsequenceTask {
     public static void main (String[] str) {

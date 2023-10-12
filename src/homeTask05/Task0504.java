@@ -1,6 +1,4 @@
-package HomeTask05;
-
-import javax.naming.Name;
+package homeTask05;
 
 public class Task0504 {
     /*

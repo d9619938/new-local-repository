@@ -1,4 +1,4 @@
-package HomeTask01;
+package homeTask01;
 
 public class File03 {
     private static String change = "change";
