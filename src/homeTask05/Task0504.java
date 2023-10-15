@@ -15,30 +15,42 @@ public class Task0504 {
 
     public static void main(String[] args) {
         int[] task04 = {88, 34, 12, 55, 90, 4, 10, 44};
-        int searchParameter = 4;
+        int wSize = 4;
         int sum = 0;
         int maxSum = 0;
-        int start = 0;
-        int end = 0;
-
-        while (end <= task04.length) {
-            if (end - start < searchParameter) {
-                sum += task04[end];
-                end++;
-            } else {
+        int wStart = 0;
+        for (int wEnd = 0; wEnd < task04.length; wEnd++){
+            sum +=task04[wEnd];
+            if (wEnd >= wSize-1) {
+                System.out.println(wStart + " сумма - " + sum);
                 maxSum = Math.max(sum, maxSum);
-                System.out.println("Сумма 4-х смежных чисел массива от индекса " + start +
-                        " до индекса " + (end-1) + " :" + sum);
-                if (end == task04.length) {
-                    break;
-                }
-                    sum = 0;
-                    start++;
-                    end = start;
-
+                sum -= task04[wStart];
+                wStart++;
             }
         }
         System.out.println("Максимальная сумма смежных чисел :" + maxSum);
     }
 }
+
+
+//        while (end <= task04.length) {
+//            if (end - start < searchParameter) {
+//                sum += task04[end];
+//                end++;
+//            } else {
+//                maxSum = Math.max(sum, maxSum);
+//                System.out.println("Сумма 4-х смежных чисел массива от индекса " + start +
+//                        " до индекса " + (end-1) + " :" + sum);
+//                if (end == task04.length) {
+//                    break;
+//                }
+//                    sum = 0;
+//                    start++;
+//                    end = start;
+//
+//            }
+//        }
+//        System.out.println("Максимальная сумма смежных чисел :" + maxSum);
+//    }
+//}
 

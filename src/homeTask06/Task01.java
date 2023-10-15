@@ -18,12 +18,11 @@ public class Task01 {
     }
 
     public static void checkForPalindrom(String string) {
-        if (string != null) {
-            StringBuilder sb = new StringBuilder(string);
-            String check = sb.reverse().toString();
-            System.out.printf("Является ли строка \"%s\" палиндромом - %B\n",
-                    string, (string.equalsIgnoreCase(check) ? true : false));
-        } else
-            System.out.println("Ошибка, строка содержит \"null\"");
+        if (string == null)  return;
+        StringBuilder sb = new StringBuilder(string);
+        String check = sb.reverse().toString();
+        System.out.printf("Является ли строка \"%s\" палиндромом - %B\n",
+                string, (string.equalsIgnoreCase(check) ? true : false));
+
     }
 }
