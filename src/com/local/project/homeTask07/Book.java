@@ -38,12 +38,12 @@ public class Book {
         if (author == null) {
             throw new IllegalArgumentException("author not null");
         }
-            for (int i = 0, avtorCount = 0; avtorCount == 0 && i < authors.length; i++) {
+            for (int i = 0; i < authors.length; i++) {
                 if (authors[i] == author){
                     return;
                 } else if (authors[i] == null) {
                     authors[i] = author;
-                    avtorCount++;
+                    return;
                 }
             }
         }
