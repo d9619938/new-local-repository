@@ -1,7 +1,7 @@
 package com.local.project.homeTask10.task.images;
 
 
-public class Image implements Drawable {
+public class Image implements Drawable, Cloneable {
     private String path;
 
     public Image(String path) {
@@ -17,4 +17,8 @@ public class Image implements Drawable {
         System.out.println(path);
     }
 
+    @Override
+    public Image clone() throws CloneNotSupportedException {
+        return (Image) super.clone();
+    }
 }
