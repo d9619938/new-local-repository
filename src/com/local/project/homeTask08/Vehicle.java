@@ -1,6 +1,6 @@
 package com.local.project.homeTask08;
 
-public class Vehicle {
+public abstract class Vehicle {
     protected String number;
     protected int wearLevel;
     protected int maxSpeed = 120;
@@ -34,5 +34,6 @@ public class Vehicle {
         maxSpeed = speed;
     }
 
+    public abstract void stop();
 }
 

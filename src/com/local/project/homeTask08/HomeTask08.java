@@ -26,6 +26,10 @@ public class HomeTask08 {
         repairShop.addToVehicles(scooter02);
         repairShop.addToVehicles(scooter03);
         repairShop.addToVehicles(scooter04);
+        scooter02.setDefaultColor();
+        System.out.println(scooter02.getColor());
+        scooter02.chengeColor("серобуромалиновый");
+        System.out.println(scooter02.getColor());
 
         System.out.println("4) Массив Vehicle до работы метода repairAll - " + Arrays.toString(repairShop.getVehicles()));
         System.out.println("5) Цвет машины до работы метода repairAll - " + car.getColor());

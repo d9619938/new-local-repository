@@ -49,6 +49,7 @@ public class RepairShop {
         for (int i = 0; i < vehicles.length; i++) {
             if (vehicles[i] == null) return;
             vehicles[i].repair();
+            vehicles[i].stop();
             if(vehicles[i] instanceof Car car) {
                 car.setColor(colors[(int) (Math.random() * colors.length)]);
             }

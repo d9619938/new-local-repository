@@ -1,6 +1,8 @@
 package com.local.project.homeTask08;
 
-public class Car extends Vehicle{
+import java.awt.*;
+
+public class Car extends Vehicle implements Painting{
     private String color = "белый";
 
     public Car(String number) {
@@ -18,5 +20,18 @@ public class Car extends Vehicle{
     @Override
     public void repair() {
         super.repair();
+    }
+    public void stop() {
+        System.out.println("Машина остановлена");
+    }
+
+    @Override
+    public void setDefaultColor() {
+        color = "белый";
+    }
+
+    @Override
+    public void chengeColor(String color) {
+        this.color =  color;
     }
 }

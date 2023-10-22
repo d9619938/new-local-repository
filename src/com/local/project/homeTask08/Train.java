@@ -42,4 +42,7 @@ public class Train extends Vehicle {
             this.repair();
         }
     }
+    public void stop() {
+        System.out.println("Поезд остановлен");
+    }
 }

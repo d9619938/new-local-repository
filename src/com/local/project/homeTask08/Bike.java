@@ -20,5 +20,8 @@ public class Bike extends Vehicle {
     public String getType() {
         return type;
     }
+    public void stop() {
+        System.out.println("Двухколесный остановлен");
+    }
 }
 
