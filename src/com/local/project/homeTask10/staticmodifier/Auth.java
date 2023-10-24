@@ -1,8 +1,10 @@
 package com.local.project.homeTask10.staticmodifier;
 
-public interface Auth {
+public sealed interface Auth permits GAuth, AppAuth{
     boolean login(String username, String password);
     boolean logout();
+
+
     static Auth getAuth(String authType) {
         Auth auth; // благодаря общему супертипу интерфейса можно запустить ветвление
 //        и потом независимо от типа самой переменной вызвать у нее методы интерфейса

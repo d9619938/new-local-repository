@@ -15,11 +15,16 @@ public class Gallery implements Drawable, Cloneable {
     }
 
     @Override
-    public Gallery clone() throws CloneNotSupportedException {
-        Gallery galleryClone = (Gallery) super.clone();
+    public Drawable clone()  {
+        Gallery galleryClone = null;
+        try {
+            galleryClone = (Gallery) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
         galleryClone.drawables = new Drawable[drawables.length];  // кажется
         for (int i = 0; i < galleryClone.drawables.length; i++) { // переопределение элементов массива
-            galleryClone.drawables[i] = getDrawables()[i];        // бессмысленно, т.к. в элементы передаем текущие ссылки
+            galleryClone.drawables[i] = getDrawables()[i].clone();        // бессмысленно, т.к. в элементы передаем текущие ссылки
                                                                 //getDrawables()[i].clone() - ошибка, клонирование запрещено
                                                                 //((Gallery)getDrawables()[i]).clone() - СlassCastExeption
         }

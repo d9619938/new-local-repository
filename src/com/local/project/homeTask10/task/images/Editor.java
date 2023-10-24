@@ -32,9 +32,9 @@ public final class Editor implements Cloneable {
     public Editor clone() throws CloneNotSupportedException {
         Editor editorClone = null;
         if (drawable instanceof Image) {
-        editorClone = new Editor(((Image) drawable).clone());
+        editorClone = new Editor((drawable).clone());
     } else if (drawable instanceof Gallery) {
-            editorClone = new Editor(((Gallery) drawable).clone());
+            editorClone = new Editor((drawable).clone());
             }
         return  editorClone;
         }

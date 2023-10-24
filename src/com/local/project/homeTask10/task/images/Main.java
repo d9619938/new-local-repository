@@ -3,7 +3,7 @@ package com.local.project.homeTask10.task.images;
 public class Main {
     public static void main(String[] args) throws CloneNotSupportedException {
         Editor editor01 = new Editor(new Image("\"D:\\rose.png\""));
-        Editor editor02 = new Editor(new Gallery("Gallery",
+        Editor editor02 = new Editor(new Gallery("Галерея",
                 new Drawable[]{new Image("\"D:\\horse.png\""), new Image("\"D:\\pig.png\"")}));
 
         Editor[] editorsImage = copyTwoEditor(editor01);
