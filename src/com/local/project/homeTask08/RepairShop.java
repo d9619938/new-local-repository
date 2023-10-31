@@ -50,7 +50,7 @@ public class RepairShop {
             if (vehicles[i] == null) return;
             vehicles[i].repair();
             vehicles[i].stop();
-            if(vehicles[i] instanceof Car car) {
+            if(vehicles[i] instanceof Car car) {  // тут же можно продолжить формировать условие
                 car.setColor(colors[(int) (Math.random() * colors.length)]);
             }
             vehicles[i] = null;
