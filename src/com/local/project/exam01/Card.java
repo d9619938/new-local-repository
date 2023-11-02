@@ -5,10 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Card {
-    /*Каждый абонемент хранит номер, дату регистрации (текущая дата)
-     и дату окончания регистрации. Каждый абонемент хранит информацию
-      о владельце (НЕ НАОБОРОТ). Данные о владельце: имя, фамилия,
-       год рождения.*/
+
     private static int count;
     private final int NUMBER_OF_CARD; // порядковый номер абонемента
     private final CardType TYPE;         // тип абонемента
@@ -17,7 +14,6 @@ public class Card {
     private LocalDate dateEnd;  // дата окончания срока действия абонемента
     private LocalDateTime TIME_END;          // время окончания действия
     private final Visitor VISITOR;           // данные гостя
-    private String zoneInfo = "";
 
 
     public Card(CardType type, LocalDate registrationEndDate, Visitor guest) {// конструктор абонемента

@@ -55,7 +55,7 @@ public class Exceptions {
 
         try {
             User user = new User(3);
-            User copy = user.clone();
+            //User copy = user.clone();
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
         } catch (Exception e) {
