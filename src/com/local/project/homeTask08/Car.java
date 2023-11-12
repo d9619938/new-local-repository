@@ -3,7 +3,7 @@ package com.local.project.homeTask08;
 import java.awt.*;
 
 public class Car extends Vehicle implements Painting{
-    private String color = "Р±РµР»С‹Р№";
+    private String color = "белый";
 
     public Car(String number) {
         super(number, 240);
@@ -22,16 +22,23 @@ public class Car extends Vehicle implements Painting{
         super.repair();
     }
     public void stop() {
-        System.out.println("РњР°С€РёРЅР° РѕСЃС‚Р°РЅРѕРІР»РµРЅР°");
+        System.out.println("Машина остановлена");
     }
 
     @Override
     public void setDefaultColor() {
-        color = "Р±РµР»С‹Р№";
+        color = "белый";
     }
 
     @Override
     public void chengeColor(String color) {
         this.color =  color;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "color='" + color + '\'' +
+                '}';
     }
 }

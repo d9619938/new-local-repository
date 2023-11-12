@@ -3,7 +3,7 @@ package com.local.project.lesson17.task;
 import java.util.*;
 
 public class HomeTask01 {
-    private static final String text = "It is a uncover long established fact that a reader will be distracted uncover by the readable content of a page " +
+    private static final String TEXT = "It is a uncover long established fact that a reader will be distracted uncover by the readable content of a page " +
             "when looking at its layout The point of using uncover Lorem Ipsum is that sites it has a more-or-less normal distribution of letters" +
             "as uncover opposed to still using Content here humour uncover content here making it look like readable English Many desktop publishing " +
             "packages and web page editors now use Lorem Ipsum as their default model text and a search for lorem ipsum will " +
@@ -21,10 +21,8 @@ public class HomeTask01 {
         task01.mission03();
         System.out.println();
 
-        task01.mission04();   // не пришла идея как реализовать...надо думать
-
-
-
+        task01.mission04();
+        System.out.println();
 
     }
 
@@ -57,6 +55,7 @@ public class HomeTask01 {
             strings.add(w.toLowerCase());
         }
         Map<String, Long> map = addMapString(strings);
+        System.out.println(map);
         return map.get(word.toLowerCase().trim());
     }
 
@@ -68,14 +67,14 @@ public class HomeTask01 {
         String result = text.replaceAll("(?U)[^\\p{L}\\p{N}\\s]+", "");
         String[] results = result.split(" ");
         Collection<String> strings = new ArrayList<>(); // коллекция тут явно лишняя, надо пробовать без нее...
-        int maxWord = 0;
+        int maxLengthWord = 0;
         for (String w : results) {
             strings.add(w);
             int wLength = w.length();
-            maxWord = Math.max(maxWord, wLength);
+            maxLengthWord = Math.max(maxLengthWord, wLength);
         }
         Map<Integer, List<String>> map = new HashMap<>();
-        for (int i = 1; i <= maxWord; i++) {
+        for (int i = 1; i <= maxLengthWord; i++) {
             List<String> stringList = new ArrayList<>();
             for (String str : strings) {
                 str = str.toLowerCase();
@@ -94,71 +93,103 @@ public class HomeTask01 {
         if (text == null) throw new IllegalArgumentException("text not null");
         String result = text.replaceAll("(?U)[^\\p{L}\\p{N}\\s]+", "");
         String[] results = result.split(" ");
-        Collection<String> strings = new ArrayList<>(); // коллекция тут явно лишняя, надо пробовать без нее...
-        for (String w : results) {
-            strings.add(w);
-        }
+        Collection<String> strings = new ArrayList<>();
+        Collections.addAll(strings, results);
         Map<String, Long> map = addMapString(strings);
-        Set<Map.Entry<String, Long>> mapEntry = map.entrySet();
-        TreeSet<Long> longs = new TreeSet<>();
-        for (Map.Entry<String, Long> m : mapEntry) {
-            if (m.getKey().length() > 3)
-                longs.add(m.getValue());
-        }
-    }
-        // дальше надо думать.....
 
-//        long x = longs.getLast();
-//        while (x>=0)
-//        for (Map.Entry<String, Long> m : mapEntry) {
-//            if (m.getValue() == x) {
-//                System.out.println(m.getKey() + " встречается в тексте " + m.getValue() + " раз(а)");
-//                --x;
-//
+        Set<Map.Entry<String, Long>> mapSet = map.entrySet();
+
+        long numberOfRepetitions = 0L; //определяем самое популярное слово в тексте
+        for (Map.Entry<String, Long> m : mapSet) {
+            numberOfRepetitions = numberOfRepetitions > m.getValue() ? numberOfRepetitions : m.getValue();
+        }
+
+        final String prepositionsAndArticle = "aboard\tabout\tabove\tabsent\tacross\tafore\tafter\tagainst\talong\tamid\tamidst\tamong\t" +
+                "amongst\taround\tas\taside\taslant\tastride\tat\tathwart\tatop\tbar\tbefore\tbehind\tbelow\tbeneath\t" +
+                "beside\tbesides\tbetween\tbetwixt\tbeyond\tbut\tby\tcirca\tdespite\tdown\texcept\tfor\tfrom\tgiven\t" +
+                "in\tinside\tinto\tlike\tmid\tminus\tnear\tneath\tnext\tnotwithstanding\tof\toff\ton\topposite\tout\t" +
+                "outside\tover\tpace\tper\tplus\tpost\tpro\tqua\tround\tsave\tsince\tthan\tthrough\ttill\ttimes\tto\t" +
+                "toward\ttowards\tunder\tunderneath\tunlike\tuntil\tup\tversus\tvia\tvice\twith\twithout\t\tbarring\t" +
+                "concerning\tconsidering\tdepending\tduring\tgranted\texcepting\texcluding\tfailing\tfollowing\t" +
+                "including\tpast\tpending\tregarding\t\talongside\twithin\toutside\tupon\tonto\tthroughout\twherewith\t" +
+                "a\tan\tthe\n";
+//        int numberOfTop10 = 1;
+//        while (numberOfRepetitions > 0L) { // пробегаем по списку пар
+//            for (Map.Entry<String, Long> m : mapSet) {
+//                if (numberOfTop10 <= 10 && m.getValue() == numberOfRepetitions && !prepositionsAndArticle.contains(m.getKey())) {
+//                    System.out.printf("№%d в рейтинге TOP10: %d раз встречается слово \"%s\"%n",
+//                            numberOfTop10, numberOfRepetitions, m.getKey());
+//                    numberOfTop10++;
+//                }
 //            }
-//
-//        }
-//        long x = longs.getLast();
-//        for (long i = longs.size()-1L; i >= 0L ; i--, x--) {
-//            System.out.println(x);
-//
-//        }
-//    }
+//            numberOfRepetitions--;
+//        }   //
+        TreeMap<Long, ArrayList<String>> top10 = new TreeMap<>();
 
-//        System.out.println(longs.sort(););
-
-
-
-
-        private void mission01() {
-            Collection<String> strings = new ArrayList<>();
-            strings.add("СПБ");
-            strings.add("Москва");
-            strings.add("СПБ");
-            strings.add("Воронеж");
-            strings.add(null);
-            strings.add("СПБ");
-            strings.add("Воронеж");
-            strings.add("Воронеж");
-            strings.add(null);
-            strings.add("СПБ");
-
-            System.out.println();
-            System.out.println("Задание 1: Результата работы метода addMapString()");
-            System.out.println(addMapString(strings));
-        }
-        private void mission02() {
-            String word = "   Content ";
-            System.out.println("Задание 2: Результат работы метода numberOfOccurrences (String word, String text)");
-            System.out.println(String.format("Слово \"%s\" встречается в тексте %d раз(а)", word, numberOfOccurrences(word, text)));
-        }
-        private void mission03() {
-            System.out.println("Задание 3: Результат работы метода getIntegerListMap");
-            System.out.println(getIntegerListMap(text));
-        }
-        private void mission04() {
-        getTop10(text);
+        for (Map.Entry<String, Long> m : mapSet) {
+            ArrayList<String> topString = new ArrayList<>();
+            if (!prepositionsAndArticle.contains(m.getKey()))
+                if (top10.containsKey(m.getValue())) {
+                    ArrayList<String> duplicate = top10.get(m.getValue());
+                    duplicate.add(m.getKey());
+                    top10.put(m.getValue(), duplicate);
+                } else {
+                    topString.add(m.getKey());
+                    top10.put(m.getValue(), topString);
+                }
         }
 
+        Set<Map.Entry<Long, ArrayList<String>>> top10Entry = top10.entrySet();
+        Long max = 0L;
+            for (Map.Entry<Long, ArrayList<String>> entry : top10Entry) {
+                max = max > entry.getKey() ? max : entry.getKey();
+            }
+        int i = 0;
+        while (max > 0) {
+            for (Map.Entry<Long, ArrayList<String>> entry : top10Entry) {
+                if (entry.getKey() == max) {
+                    System.out.printf("№%d в рейтинге TOP10: %d раз встречается слово(а) %s\n", ++i, entry.getKey(), entry.getValue());
+                }
+            }
+            max--;
+        }
+
+        }
+
+    private void mission01() {
+        Collection<String> strings = new ArrayList<>();
+        strings.add("СПБ");
+        strings.add("Москва");
+        strings.add("СПБ");
+        strings.add("Воронеж");
+        strings.add(null);
+        strings.add("СПБ");
+        strings.add("Воронеж");
+        strings.add("Воронеж");
+        strings.add(null);
+        strings.add("СПБ");
+
+        System.out.println();
+        System.out.println("Задание 1: Результата работы метода addMapString()");
+        System.out.println(addMapString(strings));
     }
+
+    private void mission02() {
+        String word = "   Content ";
+        System.out.println("Задание 2: Результат работы метода numberOfOccurrences (String word, String text)");
+        System.out.println(String.format("Слово \"%s\" встречается в тексте %d раз(а)", word, numberOfOccurrences(word, TEXT)));
+    }
+
+    private void mission03() {
+        System.out.println("Задание 3: Результат работы метода getIntegerListMap");
+        System.out.println(getIntegerListMap(TEXT));
+    }
+
+    private void mission04() {
+
+        System.out.println("Задание 4: Результат работы метода getTop10");
+        getTop10(TEXT);
+    }
+
+}
 

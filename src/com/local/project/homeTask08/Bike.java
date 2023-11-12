@@ -2,7 +2,7 @@ package com.local.project.homeTask08;
 
 public class Bike extends Vehicle {
     private int numberOfWheels = 2;
-    private String type = "городской";
+    private String type = "city";
 
 
     public Bike(String number, int speed) {
@@ -22,6 +22,14 @@ public class Bike extends Vehicle {
     }
     public void stop() {
         System.out.println("Двухколесный остановлен");
+    }
+
+    @Override
+    public String toString() {
+        return "Bike{" +
+                "numberOfWheels=" + numberOfWheels +
+                ", type='" + type + '\'' +
+                '}';
     }
 }
 
