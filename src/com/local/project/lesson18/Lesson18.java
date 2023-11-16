@@ -3,6 +3,7 @@ import com.local.project.lesson1516.homeTask16.Fruit;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.Predicate;
 
@@ -16,11 +17,11 @@ public class Lesson18 {
         Operation minus  = (first, second) -> first - second;
         System.out.println(minus.action(45, 90));
 
-        Operation del  = (first, second) -> {
-//            if (second == 0) throw new IllegalArgumentException("second not null");
+        Operation div  = (first, second) -> {
+            if (second == 0) throw new IllegalArgumentException("second not null");
             return first / second;
         };
-        System.out.println(del.action(90, 0));
+        System.out.println(div.action(90, 0));
 
         Operation sub  = (first, second) -> first * second;
         System.out.println(sub.action(45, 90));
@@ -30,6 +31,8 @@ public class Lesson18 {
         // объекты, созданные через л€мбда, можно передавать в методы, как любые другие экземпл€ры
         printOperationResult(min, 12.3, 9.9);
         printOperationResult((a, b) -> a > b ? a : b, 12.43,56.7);
+
+        Operation operation = plus.addOperation(minus).addOperation(div). addOperation(sub);
     }
     private static void printOperationResult(Operation operation, double a, double b) {
         System.out.println(operation.action(a, b));
@@ -60,6 +63,14 @@ public class Lesson18 {
         fruits.add(new Fruit(Fruit.FruitType.BANANA, 130, 8));
         fruits.removeIf(line -> line.getType()== Fruit.FruitType.BANANA && line.getPrice()<100);
 
+        Comparator<Fruit> compareByPrice = (x, y) -> (int)(x.getPrice() - y.getPrice());
+        Comparator<Fruit> compareByCount = (f1, f2) -> f2.getCount() - f1.getCount();
+        fruits.sort(compareByCount);
+        fruits.sort(compareByPrice.thenComparing(compareByCount));
+
+
+
+
         fruits.forEach(line -> {
             if (line.getType() == Fruit.FruitType.APPLE || line.getType() == Fruit.FruitType.APPLE)
                 System.out.println(String.format("%s price - %s", line, line.getPrice()));
@@ -84,4 +95,12 @@ public class Lesson18 {
 ////        return ArrayList<T> fruits01 = fruitsList.removeIf(fruit -> !filter.test(fruit));
 //
 //    }
+
+//    ”читыва€, что Comparator - функциональный интерфейс,
+//    отсортировать список фруктов:
+//            1. по цене
+//  2. по цене и количеству
+
+
+
 }
