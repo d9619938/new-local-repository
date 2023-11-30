@@ -1,15 +1,21 @@
 package com.local.project.lesson25;
 
+import java.io.Serial;
 import java.util.Collections;
 import java.util.List;
 
-public class Trader {
+public class Trader extends UserData{
+    @Serial
+    private static final long serialVersionUID = 1L;
+    private String str = "Treader";
     private long id;
     private List<Item> items;
     private Rate rate;
     private boolean isActive;
 
-    public Trader(long id, List<Item> items, Rate rate) {
+    public Trader(long id, List<Item> items, Rate rate,
+                  String username, String password) {
+        super(username, password);
         this.id = id;
         this.items = items;
         this.rate = rate;

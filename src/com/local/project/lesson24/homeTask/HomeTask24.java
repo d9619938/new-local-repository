@@ -4,8 +4,9 @@ import java.io.*;
 import java.util.Arrays;
 
 public class HomeTask24 {
-    // ## Р РµР°Р»РёР·РѕРІР°С‚СЊ РґРµРєРѕСЂР°С‚РѕСЂС‹ РґР»СЏ `InputStream` Рё `OutputStream`, РєРѕС‚РѕСЂС‹Рµ С€РёС„СЂСѓСЋС‚ Рё РґРµС€РёС„СЂСѓСЋС‚ Р±Р°Р№С‚С‹ (^)XOR С€РёС„СЂРѕРІР°РЅРёРµРј.
-    //Р”РµРєРѕСЂР°С‚РѕСЂС‹ РґРѕР»Р¶РЅС‹ РЅР°СЃР»РµРґРѕРІР°С‚СЊСЃСЏ РѕС‚ `FilterInputStream` Рё `FilterOutputStream`.
+    // ## Реализовать декораторы для `InputStream` и `OutputStream`, которые шифруют и дешифруют байты (^)XOR шифрованием.
+    //Декораторы должны наследоваться от `FilterInputStream` и `FilterOutputStream`.
+
 
     public static void main(String[] args) {
 

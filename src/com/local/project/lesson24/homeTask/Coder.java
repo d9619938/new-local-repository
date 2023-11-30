@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Arrays;
 
+
 public class Coder extends FilterOutputStream {
 
     public Coder(OutputStream out) {

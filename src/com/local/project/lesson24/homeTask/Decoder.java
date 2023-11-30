@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 
+
 public class Decoder extends FilterInputStream {
     public Decoder(InputStream input) {
         super(input);
