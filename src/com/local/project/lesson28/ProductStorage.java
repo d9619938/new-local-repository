@@ -20,9 +20,9 @@ public class ProductStorage {
         products.add(product);
         notify();
     }
-    synchronized public void writeProductsFromList () {
+    synchronized public void writeProductsFromList () throws InterruptedException {
         while (products.size() == 0) wait();
-        Product removed = products. removeLast();
+        Product removed = products. remove(0);
         try {
             Files.writeString(file.toPath(), removed.toString() ,StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         } catch (IOException e) {

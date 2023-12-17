@@ -79,7 +79,7 @@ public class HomeTask01 {
             for (String str : strings) {
                 str = str.toLowerCase();
                 if (str.length() == i && !stringList.contains(str)) {
-                    stringList.addFirst(str);
+//                    stringList.addFirst(str);
                 }
             }
             map.put(i, stringList);

@@ -37,7 +37,8 @@ public class SynchronizedClientService extends Thread {
 
 
                 reentrantLock.lock(); // тут происходит блокировка ресурса
-                token = tokens.removeLast();
+//                token = tokens.removeLast();
+                token = tokens.remove(0);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             } finally {
