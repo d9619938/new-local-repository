@@ -7,11 +7,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class SynchronizedClientService extends Thread {
         private final List<String> tokens;
-        // аналог synchronized
-        private ReentrantLock reentrantLock;
-        // Semaphore - разрешение на доступ к одному ресурсу
-        private Semaphore semaphore;
-
+        private ReentrantLock reentrantLock;   // аналог synchronized (вместо synchronized блока или метода)
+        private Semaphore semaphore;   // Semaphore - разрешение на доступ к одному ресурсу
 
         public SynchronizedClientService(List<String> tokens, ReentrantLock reentrantLock,
                                          Semaphore semaphore) {
@@ -22,10 +19,14 @@ public class SynchronizedClientService extends Thread {
 
         @Override
         public void run() {
-            String token;
+            String token;   // переменная, в которую сохраняется токен из списка
+
+//            функции блокировщика RentrantLock
 //            reentrantLock.isLocked() ресурс уже заблокирован boolean
-//            reentrantLock.getQueueLength() очередь за ресурсом
-//            boolean isLocked = reentrantLock.tryLock(100, TimeUnit.MILLISECONDS);
+//            reentrantLock.getQueueLength() узнать какая очередь за ресурсом
+//            boolean isLocked = reentrantLock.tryLock(100, TimeUnit.MILLISECONDS); // поток ждет 100 милиссекунд,
+//                                                                                  если ресурс не освободится,
+//                                                                                  выполняем рабату не связанную с ресурсом.
 //            isLocked - true, удалось получить блокировку
 //            isLocked - false, ресурс не был освобожден за 100 MILLISECONDS
 
@@ -37,7 +38,8 @@ public class SynchronizedClientService extends Thread {
 
 
                 reentrantLock.lock(); // тут происходит блокировка ресурса
-                token = tokens.removeLast();
+//                token = tokens.removeLast();
+                token = tokens.remove(0);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             } finally {
@@ -51,10 +53,6 @@ public class SynchronizedClientService extends Thread {
             semaphore.release();            // метод увеличивает счетчик semaphore, сколько взяли, столько нужно отдать!
 
         }
-
-
-
-
 
         private String makeRequest(String token) {
             try {

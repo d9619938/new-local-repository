@@ -39,10 +39,6 @@ public class Lesson28 {
         create02.start();
 
 
-
-
-
-
         List<Product> products = new ArrayList<>();
 
         ProductReader reader01 = new ProductReader(products, new File("D:\\JAVA\\test\\Task27\\productfile05.txt"));

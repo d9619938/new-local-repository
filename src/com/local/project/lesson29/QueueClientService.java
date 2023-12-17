@@ -13,8 +13,10 @@ public class QueueClientService implements Runnable{
     @Override
     public void run() {
         try{
-//            take(), put()
-
+//            блокирующие методы отличающие блокирующую очередь от обычной
+//            take()    удаляет элемент из начала очереди и возвращает его., если элемента нет, то поток останавливается
+//                      на моменте вызова метода take(), до тех пор пока в очереди не появится элемент
+//            put()     возвращает элемент в конец очереди, если места в очереди нет, то поток будет заблокирован, пока место не освободится
             String token = tokens.take();
             String newToken = makeRequest(token);
             tokens.put(newToken);

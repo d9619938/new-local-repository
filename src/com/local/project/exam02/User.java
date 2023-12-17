@@ -1,55 +1,71 @@
 package com.local.project.exam02;
 
-public class User {
+import java.io.File;
+import java.io.Serializable;
+import java.util.Objects;
 
+public class User implements Serializable {
+    private Game game;
     private String login;
-    private String paragraph = "Лисенок";
+    private String paragraph;
+    private File pathUserFile;
     Command startGame;
     Command backToGame;
     Command exitGame;
     Command saveGame;
     Command goToSaveGame;
+    Command backToMenu;
 
-    public User(String login){
-        Menu menu = new Menu();
+    public User(Game game, String login){
+        this.game = game;
+        Menu menu = new Menu(game);
         setLogin(login);
         startGame = new CommandStart(menu);
         backToGame = new CommandBackToGame(menu);
         exitGame = new CommandExitGame(menu);
         saveGame = new CommandSaveGame(menu);
         goToSaveGame = new CommandGoToSaveGame(menu);
+        backToMenu = new CommandBackToMenu(menu);
+
     }
 
-    public void setLogin(String login){
-            this.login = login;
+    protected void setLogin(String login){
+            this.login = Objects.requireNonNull(login, "login не может быть null");
+            pathUserFile = new File("C:\\Users\\d9619\\IdeaProjects\\new-local-repository\\" +
+                    "src\\com\\local\\project\\exam02\\save_archive\\"+ login +".txt");
     }
-    public String getLogin() {
+    protected String getLogin() {
         return login;
     }
-    public String getParagraph()
+    protected String getParagraph()
     {
        return paragraph;
     }
-    void StartGame(){
+    protected File getPathUserFile() {
+        return pathUserFile;
+    }
+    protected void setParagraph(String paragraph) {
+        if (paragraph == null) throw new IllegalArgumentException("paragraph not null");
+        this.paragraph = paragraph;
+    }
+    protected void StartGame(){
         startGame.execute();
     }
-    void beckToGame(){
+    protected void beckToGame(){
         backToGame.execute();
     }
-    void exitGame(){
+    protected void exitGame(){
         exitGame.execute();
     }
-    void saveGame(){
+    protected void saveGame(){
         saveGame.execute();
     }
-    void GoToSaveGame(){
-        goToSaveGame.execute();
-    }
+    protected void goToSaveGame(){ goToSaveGame.execute(); }
+    protected void backToMenu(){ backToMenu.execute(); }
+
 
     @Override
     public String toString() {
-        return "User{" +
-                "login='" + login + '\'' +
-                '}';
+        return "'" + login + "'";
     }
 }
