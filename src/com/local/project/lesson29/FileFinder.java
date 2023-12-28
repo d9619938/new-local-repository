@@ -1,17 +1,27 @@
 package com.local.project.lesson29;
 
 import java.io.File;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.RecursiveTask;
 
 // «јƒј„ј ƒЋя ForkJoinPool
+=======
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.RecursiveTask;
+
+>>>>>>> origin/master
 //Future
 //ForkJoinTask
 //RecursiveTask<return type> | RecursiveAction
 public class FileFinder extends RecursiveTask<File> /* RecursiveAction*/ {
+<<<<<<< HEAD
 //    ищем файл по имени в определенной директории, если файл есть, то возвращаем абсолютный путь к файлу
+=======
+//    ищим фаил п имени, ели файл есть, то возвращаем абсолютный путь
+>>>>>>> origin/master
     private File file;
     private File directory;
 
@@ -27,8 +37,12 @@ public FileFinder(File file, File directory) {
     @Override
     protected File compute() {  // метод compute или action зависит от чего экстендимс€
         File[] subFiles = directory.listFiles();
+<<<<<<< HEAD
 //        CopyOnWriteArrayList<FileFinder> fileFinders = new CopyOnWriteArrayList<>();  тут не нужна потокобезопастна€ коллекци€
         List<FileFinder> fileFinders = new ArrayList<>();
+=======
+        CopyOnWriteArrayList<FileFinder> fileFinders = new CopyOnWriteArrayList<>();
+>>>>>>> origin/master
         if (subFiles != null) {
             for (File subFile : subFiles) {
                 if (subFile.isDirectory()) {
