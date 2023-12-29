@@ -15,7 +15,7 @@ public class FileSender {
         this.description = description;
         this.fileName = fileName;
         this.fileDirectory = fileDirectory;
-        this.patch = new File(fileDirectory + "\\" + fileName);
+        this.patch = new File(fileDirectory + "/" + fileName);
         MaxFileSizeMb = 1;
     }
 
@@ -36,22 +36,22 @@ public class FileSender {
     }
 
     protected byte[] readFile (File patch) throws IOException {
-        Objects.requireNonNull(patch, "file not null");
+        Objects.requireNonNull(patch, "file –Ω–µ –º–æ–∂–µ—Ç –±—ã—Ç—å null");
         try (FileInputStream reader = new FileInputStream(patch)) {
             return reader.readAllBytes();
         } catch (FileNotFoundException e) {
-            System.out.println("‘‡ÈÎ ÌÂ Ì‡È‰ÂÌ");
+            System.out.println("–§–∞–π–ª –Ω–µ –Ω–∞–π–¥–µ–Ω");
             System.out.println(e.getMessage());
         }
         return null;
     }
     protected void writeFile (File patch, byte[] bytes) {
-        Objects.requireNonNull(patch, "bytes not null");
+        Objects.requireNonNull(patch, "bytes –Ω–µ –º–æ–∂–µ—Ç –±—ã—Ç—å null");
         if (patch.isFile() && getFileSizeMegaBytes(patch) < MaxFileSizeMb) {
             try (FileOutputStream writer = new FileOutputStream(patch)){
                 writer.write(bytes);
             } catch (FileNotFoundException e) {
-                System.out.println("‘‡ÈÎ ÌÂ Ì‡È‰ÂÌ");
+                System.out.println("–§–∞–π–ª –Ω–µ –Ω–∞–π–¥–µ–Ω");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -63,15 +63,15 @@ public class FileSender {
     }
 
     public static void main(String[] args) {
-        FileSender sender = new FileSender("ÚÂÒÚÓ‚˚È Ù‡ÈÎ",
-                "test.txt", "C:\\Users\\d9619\\IdeaProjects\\new-local-repository\\src\\com\\local\\project\\exam03\\service");
+        FileSender sender = new FileSender("—Ç–µ—Å—Ç–æ–≤—ã–π —Ñ–∞–π–ª",
+                "test.txt", "/Users/dmitrijbogdanov/IdeaProjects/my-training/new-local-repository/src/com/local/project/exam03/service");
         try {
             byte[] bTest = sender.readFile(sender.getPatch());
             System.out.println(Arrays.toString(bTest));
 
-            sender.writeFile(new File("C:\\Users\\d9619\\IdeaProjects\\new-local-repository\\src\\com\\local\\project\\exam03\\service\\test_2.txt"), );
+            sender.writeFile(new File("/Users/dmitrijbogdanov/IdeaProjects/my-training/new-local-repository/src/com/local/project/exam03/service/test_2.txt"), bTest);
         } catch (IOException e) {
-            System.out.println("Œ¯Ë·Í‡ ˜ÚÂÌËˇ Ù‡ÈÎ‡");
+            System.out.println("–û—à–∏–±–∫–∞ —á—Ç–µ–Ω–∏—è —Ñ–∞–π–ª–∞");
             throw new RuntimeException(e);
         }
     }

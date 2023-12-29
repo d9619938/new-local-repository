@@ -1,5 +1,4 @@
-package com.local.project.lesson22.цепочкаќб€зательсв;
-
+package com.local.project.lesson22.chain;
 public class Drink extends Action{
 
     @Override

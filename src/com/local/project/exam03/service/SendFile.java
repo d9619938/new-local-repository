@@ -11,29 +11,29 @@ public class SendFile {
         if (file.exists()) {
             System.out.println((getFileSizeMegaBytes(file)) < 1);
             System.out.println((getFileSizeBytes(file)) == 11);
-        } else System.out.println("Ôàéëà íåò!");
+        } else System.out.println("Ð¤Ð°Ð¹Ð»Ð° Ð½ÐµÑ‚");
     }
 
 
 
         public static void main(String[] args) {
-        SendFile sendFile = new SendFile("C:\\Users\\d9619\\IdeaProjects\\new-local-repository\\src\\com\\local\\project\\exam03\\client\\file_arcive_client\\info.txt");
+        SendFile sendFile = new SendFile("/Users/dmitrijbogdanov/IdeaProjects/my-training/new-local-repository/src/com/local/project/exam03/client/file_arcive_client/info.txt");
 
 
     }
-    // ìåòîä âîçâðàùàåò ðàçìåð ôàéëà â ìåãàáàéòàõ
-    // äëèíó ôàéëà äåëèì íà 1 ìåãàáàéò (1024 * 1024 áàéò) è óçíàåì êîëè÷åñòâî ìåãàáàéò
+    // Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ñ„Ð°Ð¹Ð»Ð° Ð² Ð¼ÐµÐ³Ð°Ð±Ð°Ð¹Ñ‚Ð°Ñ…
+    // Ð´Ð»Ð¸Ð½Ñƒ Ñ„Ð°Ð¹Ð»Ð° Ð´ÐµÐ»Ð¸Ð¼ Ð½Ð° 1 Ð¼ÐµÐ³Ð°Ð±Ð°Ð¹Ñ‚ (1024 * 1024 Ð±Ð°Ð¹Ñ‚) Ð¸ ÑƒÐ·Ð½Ð°ÐµÐ¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð¼ÐµÐ³Ð°Ð±Ð°Ð¹Ñ‚
     private static double getFileSizeMegaBytes(File file) {
         return (double) file.length()/(1024*1024);
     }
 
-    // ìåòîä âîçâðàùàåò ðàçìåð ôàéëà â êèëîáàéòàõ
-    // äëèíó ôàéëà äåëèì íà 1 êèëîáàéò (1024 áàéò) è óçíàåì êîëè÷åñòâî êèëîáàéò
+    // Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ñ„Ð°Ð¹Ð»Ð° Ð² ÐºÐ¸Ð»Ð¾Ð±Ð°Ð¹Ñ‚Ð°Ñ…
+    // Ð´Ð»Ð¸Ð½Ñƒ Ñ„Ð°Ð¹Ð»Ð° Ð´ÐµÐ»Ð¸Ð¼ Ð½Ð° 1 ÐºÐ¸Ð»Ð¾Ð±Ð°Ð¹Ñ‚ (1024 Ð±Ð°Ð¹Ñ‚) Ð¸ ÑƒÐ·Ð½Ð°ÐµÐ¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÐºÐ¸Ð»Ð¾Ð±Ð°Ð¹Ñ‚
     private static String getFileSizeKiloBytes(File file) {
         return (double) file.length()/1024 + " kb";
     }
 
-    // ïðîñòî âûçûâàåì ìåòîä length() è ïîëó÷àåì ðàçìåð ôàéëà â áàéòàõ
+    // Ð¿Ñ€Ð¾ÑÑ‚Ð¾ Ð²Ñ‹Ð·Ñ‹Ð²Ð°ÐµÐ¼ Ð¼ÐµÑ‚Ð¾Ð´ length() Ð¸ Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ñ„Ð°Ð¹Ð»Ð° Ð² Ð±Ð°Ð¹Ñ‚Ð°Ñ…
     private long getFileSizeBytes(File file) {
         return (long)file.length();
     }

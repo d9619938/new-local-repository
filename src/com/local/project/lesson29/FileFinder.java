@@ -1,27 +1,27 @@
 package com.local.project.lesson29;
 
 import java.io.File;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.RecursiveTask;
 
-// ЗАДАЧА ДЛЯ ForkJoinPool
-=======
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ ForkJoinPool
+//=======
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.RecursiveTask;
 
->>>>>>> origin/master
+//>>>>>>> origin/master
 //Future
 //ForkJoinTask
 //RecursiveTask<return type> | RecursiveAction
 public class FileFinder extends RecursiveTask<File> /* RecursiveAction*/ {
-<<<<<<< HEAD
-//    ищем файл по имени в определенной директории, если файл есть, то возвращаем абсолютный путь к файлу
-=======
-//    ищим фаил п имени, ели файл есть, то возвращаем абсолютный путь
->>>>>>> origin/master
+//<<<<<<< HEAD
+//    пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
+//=======
+//    пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+//>>>>>>> origin/master
     private File file;
     private File directory;
 
@@ -35,23 +35,23 @@ public FileFinder(File file, File directory) {
 }
 
     @Override
-    protected File compute() {  // метод compute или action зависит от чего экстендимся
+    protected File compute() {  // пїЅпїЅпїЅпїЅпїЅ compute пїЅпїЅпїЅ action пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         File[] subFiles = directory.listFiles();
-<<<<<<< HEAD
-//        CopyOnWriteArrayList<FileFinder> fileFinders = new CopyOnWriteArrayList<>();  тут не нужна потокобезопастная коллекция
-        List<FileFinder> fileFinders = new ArrayList<>();
-=======
+//<<<<<<< HEAD
+//        CopyOnWriteArrayList<FileFinder> fileFinders = new CopyOnWriteArrayList<>();  пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//        List<FileFinder> fileFinders = new ArrayList<>();
+//=======
         CopyOnWriteArrayList<FileFinder> fileFinders = new CopyOnWriteArrayList<>();
->>>>>>> origin/master
+//>>>>>>> origin/master
         if (subFiles != null) {
             for (File subFile : subFiles) {
                 if (subFile.isDirectory()) {
-                    FileFinder subFinder = new FileFinder(file, subFile); // если основной поток сталкивается с подзадачей, то создаем отдельную задачу
-                    subFinder.fork(); // поместить новый поток в очередь
+                    FileFinder subFinder = new FileFinder(file, subFile); // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+                    subFinder.fork(); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                     fileFinders.add(subFinder);
                 } else {
-                    if (file.getName().equals(subFile.getName())) { // если поток доходит до файлов, то сравнивает имя
-                        // и возвращает абсолютный путь
+                    if (file.getName().equals(subFile.getName())) { // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+                        // пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
                         return subFile.getAbsoluteFile();
                     }
                 }

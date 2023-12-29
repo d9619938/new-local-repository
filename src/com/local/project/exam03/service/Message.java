@@ -24,6 +24,6 @@ public class Message implements Serializable {
 
     @Override
     public String toString() {
-        return "'" + text + "'\n" + "время отправки " + sentAT;
+        return "'" + text + "'\n" + "РІСЂРµРјСЏ РѕС‚РїСЂР°РІРєРё - " + sentAT;
     }
 }

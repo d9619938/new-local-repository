@@ -1,7 +1,5 @@
 package com.local.project.exam03.service;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -15,7 +13,7 @@ public class ConnectionService implements AutoCloseable {
     ObjectInputStream inputStream;
 
     public ConnectionService(Socket connectionSocket) throws IOException {
-        this.connectionSocket = Objects.requireNonNull(connectionSocket, "connectionSocket не может быть null");
+        this.connectionSocket = Objects.requireNonNull(connectionSocket, "connectionSocket РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null");
         this.outputStream = new ObjectOutputStream(connectionSocket.getOutputStream());
         this.inputStream = new ObjectInputStream(connectionSocket.getInputStream());
     }
@@ -28,8 +26,8 @@ public class ConnectionService implements AutoCloseable {
             outputStream.close();
             connectionSocket.close();
         } catch (IOException e) {
-            System.out.println("Ошибка во время закрытия ресурсов");
-            System.out.println(e.getMessage());;
+            System.out.println("РћС€РёР±РєР° РІРѕ РІСЂРµРј СЏР·Р°РєСЂС‹С‚РёСЏ СЂРµСЃСѓСЂСЃРѕРІ");
+            System.out.println(e.getMessage());
         }
     }
     public void writheMessage (Message message) throws IOException {
@@ -41,7 +39,7 @@ public class ConnectionService implements AutoCloseable {
         try {
             return (Message) inputStream.readObject();
         } catch (ClassNotFoundException e) {
-            System.out.println("Ошибка приведения входящего сообщения к типу Message");
+            System.out.println("РћС€РёР±РєР° РїСЂРёРІРµРґРµРЅРёСЏ РІС…РѕРґСЏС‰РµРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ Рє С‚РёРїСѓ Message");
             throw new RuntimeException(e);
         }
     }

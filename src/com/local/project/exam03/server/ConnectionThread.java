@@ -2,7 +2,6 @@ package com.local.project.exam03.server;
 
 import com.local.project.exam03.service.ConnectionService;
 import com.local.project.exam03.service.Message;
-
 import java.io.IOException;
 
 public class ConnectionThread implements Runnable {
@@ -26,7 +25,7 @@ public class ConnectionThread implements Runnable {
                     try {
                         connection.writheMessage(message);
                     } catch (IOException e) {
-                        System.out.println("Ошибка отправки сообщения");
+                        System.out.println("РћС€РёР±РєР° РѕС‚РїСЂР°РІРєРё СЃРѕРѕР±С‰РµРЅРёСЏ");
                         System.out.println(e.getMessage());
                     }
                 }
@@ -35,14 +34,14 @@ public class ConnectionThread implements Runnable {
                 server.getConnectionServicesList().remove(connectionService);
                 for (ConnectionService connection : server.getConnectionServicesList()) {
                     try {
-                        connection.writheMessage(new Message("один из пользователей покинул чат"));
+                        connection.writheMessage(new Message("РћРґРёРЅ РёР· РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ РїРѕРєРёРЅСѓР» С‡Р°С‚"));
                     } catch (IOException ex) {
-                        System.out.println("Ошибка отправки сообщения");
+                        System.out.println("РћС€РёР±РєР° РѕС‚РїСЂР°РІРєРё СЃРѕРѕР±С‰РµРЅРёСЏ");
                         System.out.println(ex.getMessage());
                     }
                 }
-                System.out.println("Соединение с клиентом разорвано");
-                System.out.printf("Количество активных подключений - %d\n", server.getConnectionServicesList().size());
+                System.out.println("РЎРѕРµРґРёРЅРµРЅРёРµ СЃ РєР»РёРµРЅС‚РѕРј СЂР°Р·РѕСЂРІР°РЅРѕ");
+                System.out.printf("РљРѕР»РёС‡РµСЃС‚РІРѕ Р°РєС‚РёРІРЅС‹С… СЃРѕРµРґРёРЅРµРЅРёР№ - %d\n", server.getConnectionServicesList().size());
                 connectionService.close();
                 return;
             }
