@@ -1,4 +1,4 @@
-package com.local.project.exam03.service;
+package com.local.project.exam03.service.test;
 
 
 import java.io.File;
@@ -16,11 +16,7 @@ public class SendFile {
 
 
 
-        public static void main(String[] args) {
-        SendFile sendFile = new SendFile("/Users/dmitrijbogdanov/IdeaProjects/my-training/new-local-repository/src/com/local/project/exam03/client/file_arcive_client/info.txt");
 
-
-    }
     // возвращает размер файла в мегабайтах
     // длину файла делим на 1 мегабайт (1024 * 1024 байт) и узнаем количество мегабайт
     private static double getFileSizeMegaBytes(File file) {

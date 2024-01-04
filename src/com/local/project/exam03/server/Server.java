@@ -1,11 +1,9 @@
 package com.local.project.exam03.server;
 
 import com.local.project.exam03.service.ConnectionService;
-import org.w3c.dom.ls.LSOutput;
-
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
-import java.sql.SQLOutput;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -24,26 +22,48 @@ public class Server implements Runnable{
     private final int port;
     private ExecutorService threadPool;
     private CopyOnWriteArrayList<ConnectionService> connectionServicesList;
+    private ConcurrentHashMap<File, String> fileMap;
+    private final String directory;
+    private final String separator;
+    File mapinfo;
 
     public Server(int port) {
         this.port = port;
         threadPool = Executors.newFixedThreadPool(10);
+        directory = "/Users/dmitrijbogdanov/IdeaProjects/my-training/new-local-repository/src/com/local/project" +
+                "/exam03/server/file-archive-server";
+        separator = File.separator;
     }
 
-    public ExecutorService getThreadPool() {
-        return threadPool;
-    }
     public CopyOnWriteArrayList<ConnectionService> getConnectionServicesList() {
         return connectionServicesList;
+    }
+
+    public ConcurrentHashMap<File, String> getFileMap() {
+        return fileMap;
+    }
+
+    public String getDirectory() {
+        return directory;
+    }
+
+    public String getSeparator() {
+        return separator;
     }
 
     @Override
     public void run() {
      try(ServerSocket serverSocket = new ServerSocket(port)) {
          connectionServicesList = new CopyOnWriteArrayList<>();
+         fileMap = new ConcurrentHashMap<>();
+         setUpFileMap();  // загрузка данных о сохраненных файлах на сервере
          System.out.println("Сервер запущен");
          System.out.printf("Количество активных соединений - %d\n", getConnectionServicesList().size());
-
+         if (!fileMap.isEmpty()) {
+             System.out.println("Список файлов хранящихся на сервере:");
+             fileMap.entrySet().stream()
+                     .forEach(x -> System.out.println("- " + x.getKey().getName() + " = " + x.getValue()));
+         }
          while (true) {
              try {
                  ConnectionService connectionService = new ConnectionService(serverSocket.accept());
@@ -61,6 +81,25 @@ public class Server implements Runnable{
          System.out.println("Ошибка создания serverSocket, возможно порт уже занят");
          System.out.println(e.getMessage());
      }
+    }
+    private void setUpFileMap() {
+        mapinfo = new File("/Users/dmitrijbogdanov/IdeaProjects/my-training/new-local-repository/src" +
+                "/com/local/project/exam03/server/mapinfo.txt");
+        if(!isFileEmpty(mapinfo)){
+            try (BufferedReader bufferedReader = new BufferedReader(new FileReader(mapinfo))){
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    String[] strings = line.split(";");
+                    fileMap.put(new File(strings[0]), strings[1]);
+                }
+            } catch (IOException e){
+                System.out.println("Ошибка чтения из файла mapinfo.txt");
+                System.out.println(e.getMessage());
+            }
+        }
 
+    }
+    private boolean isFileEmpty(File file) {
+        return file.length() == 0;
     }
 }

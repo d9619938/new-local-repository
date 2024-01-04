@@ -1,12 +1,11 @@
 package com.local.project.exam03.client;
 
-import com.local.project.exam03.service.ConnectionService;
-import com.local.project.exam03.service.Message;
-import org.w3c.dom.ls.LSOutput;
+import com.local.project.exam03.service.*;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.nio.file.Files;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -22,23 +21,15 @@ import java.util.Scanner;
 public class Client implements Runnable {
 
     InetSocketAddress remoteAddress;
-    private String name;
-
-    {
-//            System.out.println("Введите имя пользователя, после нажмите на ENTER");
-//            Scanner scanner = new Scanner(System.in);
-//            name = scanner.nextLine();
-    }
+    private final String directory;
+    private final String separator;
 
     public Client(InetSocketAddress remoteAddress) {
         this.remoteAddress = Objects.requireNonNull(remoteAddress, "remoteAddress не может быть null");
-        name = "CLIENT_nnn";
+        directory = "/Users/dmitrijbogdanov/IdeaProjects/my-training/new-local-repository/src/com/local/project" +
+                "/exam03/client/file_archive_client";
+        separator = File.separator;
     }
-
-    public String getName() {
-        return name;
-    }
-
 
     @Override
     public void run() {
@@ -47,15 +38,21 @@ public class Client implements Runnable {
             socket.connect(remoteAddress); // передаем в сокет ip и порт сервера, к которому хотим подключиться
             try {
                 ConnectionService service = new ConnectionService(socket); // используем ConnectionService для получения
-                                                                            // функционала отправки и получения сообщений
                 System.out.println("Соединение с сервером установлено");
                 Thread threadWrithe = new Thread(()-> {   // отдельный поток для отправки сообщений на сервер
                     Scanner scanner = new Scanner(System.in);
-                    System.out.println("Введите тект сообщения или '/exit' для выхода из чата.");
+                    System.out.println("""
+                            Введите тект сообщения или команду:
+                            - '/send и путь к файлу' для загрузки файла на сервер
+                            - '/get_files' для получения информации о файлах хранящихся на сервере
+                            - '/get и имя файла' для получения файла
+                            - '/exit' для выхода из чата.
+                            """);
+                    String str;
+                    Sender sender;
                     while (true) {
-                        String str;
                         str = scanner.nextLine();
-                        if ("/exit".equals(str)) {
+                        if ("/exit".equals(str)) {   //выход по команде
                             try {
                                 socket.close();
                                 System.out.println("Вы покинули чат");
@@ -64,10 +61,27 @@ public class Client implements Runnable {
                                 System.out.println("Ошибка во время закрытия сокета");
                                 System.out.println(e.getMessage());
                             }
-                        } else {
+
+
+                        } else if (str.contains("/send")) {// отправка файла
                             try {
-                                service.writheMessage(new Message(
-                                        "Пишет " + name + ": " + str));
+                                    sender = new Sender(str);
+                                    if(sender.getFile() == null) {
+                                        System.out.println("Повторите запрос");
+                                    } else {
+                                        System.out.println("Введите описание файла");
+                                        sender.setDescription(scanner.nextLine());
+                                        if (sender.checkFile()) service.writheMessage(sender);
+                                    }
+                            } catch (IOException e) {
+                                System.out.println("Ошибка отправка файла");
+                                throw new RuntimeException(e);
+                            }
+
+
+                        }  else {
+                            try {
+                                service.writheMessage(new Message(str));  // отправвка обычного текстового сообщения
                             } catch (IOException e) {
                                 System.out.println("Ошибка соединения, необходимо переподключиться");
                                 throw new RuntimeException();
@@ -78,14 +92,24 @@ public class Client implements Runnable {
 
                 Thread threadRead = new Thread(()-> {
                     Message message;
+                    Sender sender;
+                    File file;
                     while (true) {
                             try {
                                 message = service.readMessage();
-                                System.out.println(message);
+                                if (message instanceof Sender) {   // получение и загрузка файла
+                                    sender = ((Sender) message);
+                                    file = new File(directory + separator + sender.getFileName());
+                                    Files.write(file.toPath(), sender.getFileByte());
+                                    System.out.println("Файл загружен в директорию клиента");
+                                } else {
+                                    System.out.println(message);     // получение обычного текстового сообщения
+                                }
                             } catch (IOException e) {
-                                    System.out.println("Ошибка во время получения сообщения");
-                                    throw new RuntimeException();
-
+                                System.out.println("Ошибка во время получения сообщения");
+                                System.out.println("Сервер перестал отвечать, попробуйте переподключиться");
+                                System.out.println(e.getMessage());
+                                System.exit(2);
                             }
                     }
                 });

@@ -1,8 +1,6 @@
 package com.local.project.exam03.service;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.time.ZonedDateTime;
 import java.util.Objects;
@@ -12,12 +10,15 @@ public class ConnectionService implements AutoCloseable {
     ObjectOutputStream outputStream;
     ObjectInputStream inputStream;
 
+    public Socket getConnectionSocket() {
+        return connectionSocket;
+    }
+
     public ConnectionService(Socket connectionSocket) throws IOException {
         this.connectionSocket = Objects.requireNonNull(connectionSocket, "connectionSocket не может быть null");
         this.outputStream = new ObjectOutputStream(connectionSocket.getOutputStream());
         this.inputStream = new ObjectInputStream(connectionSocket.getInputStream());
     }
-
 
     @Override
     public void close() {

@@ -1,7 +1,5 @@
 package com.local.project.exam03.service;
 
-import com.local.project.exam03.server.Server;
-
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 
@@ -24,6 +22,6 @@ public class Message implements Serializable {
 
     @Override
     public String toString() {
-        return "'" + text + "'\n" + "время отправки - " + sentAT;
+        return "'" + text + "'\n"/* + "время отправки - "*/ + sentAT;
     }
 }
