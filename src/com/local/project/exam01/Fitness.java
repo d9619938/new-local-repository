@@ -12,7 +12,7 @@ public class Fitness {
     protected Card[] gymZone = new Card[20];
     protected Card[] groupClassesZone = new Card[20];
     private final Card[][] allZones = {poolZone, gymZone, groupClassesZone};
-    private final String[] zonesName = {"бассейн", "тренажерный зал", "групповые занятия"};
+    private final String[] zonesName = {"Р±Р°СЃСЃРµР№РЅ", "С‚СЂРµРЅР°Р¶РµСЂРЅС‹Р№ Р·Р°Р»", "РіСЂСѓРїРїРѕРІС‹Рµ Р·Р°РЅСЏС‚РёСЏ"};
     private final Map<Card[], String> map = new HashMap<>();
 
     public Fitness() {
@@ -26,10 +26,10 @@ public class Fitness {
     }
 
     protected void enterTheZone(Card[] zone, Card card) {
-        // D жизни думаю логичнее сначала проверить на время посещения, т.к. зал может быть вообще зарыт,
-        // а после уже на доступ в зону
-        // ВНИМАНИЕ: метод checkDate завязан на время посещения с 8:00 до 22:00...либо его закомментировать, либо установить
-        // время на компе в диапазон [8:00 ; 22:00)
+        // Р’ Р¶РёР·РЅРё РґСѓРјР°СЋ Р»РѕРіРёС‡РЅРµРµ СЃРЅР°С‡Р°Р»Р° РїСЂРѕРІРµСЂРёС‚СЊ РЅР° РІСЂРµРјСЏ РїРѕСЃРµС‰РµРЅРёСЏ, С‚.Рє. Р·Р°Р» РјРѕР¶РµС‚ Р±С‹С‚СЊ РІРѕРѕР±С‰Рµ Р·Р°СЂС‹С‚,
+        // Р° РїРѕСЃР»Рµ СѓР¶Рµ РЅР° РґРѕСЃС‚СѓРї РІ Р·РѕРЅСѓ
+        // Р’РќРРњРђРќРР•: РјРµС‚РѕРґ checkDate Р·Р°РІСЏР·Р°РЅ РЅР° РІСЂРµРјСЏ РїРѕСЃРµС‰РµРЅРёСЏ СЃ 8:00 РґРѕ 22:00...Р»РёР±Рѕ РµРіРѕ Р·Р°РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ, Р»РёР±Рѕ СѓСЃС‚Р°РЅРѕРІРёС‚СЊ
+        // РІСЂРµРјСЏ РЅР° РєРѕРјРїРµ РІ РґРёР°РїР°Р·РѕРЅ [8:00 ; 22:00)
         if (checkDate(card) && zoneAccessCheck(zone, card) && checkingAvailableSeats(zone) && checkZone(card)) {
             for (int i = 0; i < zone.length; i++) {
                 if (zone[i] == null) {
@@ -41,28 +41,28 @@ public class Fitness {
         }
     }
 
-    protected void leaveTheZone(Card[] zone, Card card) { // Выход из зоны клуба
+    protected void leaveTheZone(Card[] zone, Card card) { // Р’С‹С…РѕРґ РёР· Р·РѕРЅС‹ РєР»СѓР±Р°
         for (int i = 0; i < zone.length; i++) {
             if (zone[i] == card)
                 zone[i] = null;
         }
     }
 
-    private boolean zoneAccessCheck(Card[] zone, Card card) { // проверка доступа в желаемую зону
+    private boolean zoneAccessCheck(Card[] zone, Card card) { // РїСЂРѕРІРµСЂРєР° РґРѕСЃС‚СѓРїР° РІ Р¶РµР»Р°РµРјСѓСЋ Р·РѕРЅСѓ
         boolean isAllowedToVisit = true;
         switch (card.getTYPE()) {
             case ONE_TIME -> {
-                /*if (Arrays.equals(zone, groupClassesZone)) {*/ //через Array.equals не верно сравнивает дефолтные массивы
+                /*if (Arrays.equals(zone, groupClassesZone)) {*/ //С‡РµСЂРµР· Array.equals РЅРµ РІРµСЂРЅРѕ СЃСЂР°РІРЅРёРІР°РµС‚ РґРµС„РѕР»С‚РЅС‹Рµ РјР°СЃСЃРёРІС‹
                 if (zone == groupClassesZone) {
-                    System.out.printf("По абонементу номер %d (тип: %s) нельзя посещать групповые занятья\n",
+                    System.out.printf("РџРѕ Р°Р±РѕРЅРµРјРµРЅС‚Сѓ РЅРѕРјРµСЂ %d (С‚РёРї: %s) РЅРµР»СЊР·СЏ РїРѕСЃРµС‰Р°С‚СЊ РіСЂСѓРїРїРѕРІС‹Рµ Р·Р°РЅСЏС‚СЊСЏ\n",
                             card.getNUMBER_OF_CARD(), card.getTYPE());
                     isAllowedToVisit = false;
                 }
             }
             case DAY -> {
-                /*if (Arrays.equals(zone, poolZone)) {*/      //через Array.equals не верно сравнивает дефолтные массивы
+                /*if (Arrays.equals(zone, poolZone)) {*/      //С‡РµСЂРµР· Array.equals РЅРµ РІРµСЂРЅРѕ СЃСЂР°РІРЅРёРІР°РµС‚ РґРµС„РѕР»С‚РЅС‹Рµ РјР°СЃСЃРёРІС‹
                 if (zone == poolZone) {
-                    System.out.printf("По абонементу номер %d (тип: %s) нельзя посещать бассейн\n",
+                    System.out.printf("РџРѕ Р°Р±РѕРЅРµРјРµРЅС‚Сѓ РЅРѕРјРµСЂ %d (С‚РёРї: %s) РЅРµР»СЊР·СЏ РїРѕСЃРµС‰Р°С‚СЊ Р±Р°СЃСЃРµР№РЅ\n",
                             card.getNUMBER_OF_CARD(), card.getTYPE());
                     isAllowedToVisit = false;
                 }
@@ -71,44 +71,44 @@ public class Fitness {
         return isAllowedToVisit;
     }
 
-    private boolean checkingAvailableSeats(Card[] zone) { // есть ли свободные места?
+    private boolean checkingAvailableSeats(Card[] zone) { // РµСЃС‚СЊ Р»Рё СЃРІРѕР±РѕРґРЅС‹Рµ РјРµСЃС‚Р°?
         int freePlaces = 0;
         for (Card card : zone) {
             if (card == null)
                 freePlaces++;
         }
         if (freePlaces == 0) {
-            System.out.printf("В зоне \"%s\" нет свободных мест\n", map.get(zone));
+            System.out.printf("Р’ Р·РѕРЅРµ \"%s\" РЅРµС‚ СЃРІРѕР±РѕРґРЅС‹С… РјРµСЃС‚\n", map.get(zone));
             return false;
         }
         return true;
     }
 
-    private boolean checkDate(Card card) { // не просрочен ли абонемент
-        // ВНИМАНИЕ: метод checkDate завязан на время посещения с 8:00 до 22:00...либо его закомментировать, либо установить
-        // время на компе в диапазон [8:00 ; 22:00)
+    private boolean checkDate(Card card) { // РЅРµ РїСЂРѕСЃСЂРѕС‡РµРЅ Р»Рё Р°Р±РѕРЅРµРјРµРЅС‚
+        // Р’РќРРњРђРќРР•: РјРµС‚РѕРґ checkDate Р·Р°РІСЏР·Р°РЅ РЅР° РІСЂРµРјСЏ РїРѕСЃРµС‰РµРЅРёСЏ СЃ 8:00 РґРѕ 22:00...Р»РёР±Рѕ РµРіРѕ Р·Р°РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ, Р»РёР±Рѕ СѓСЃС‚Р°РЅРѕРІРёС‚СЊ
+        // РІСЂРµРјСЏ РЅР° РєРѕРјРїРµ РІ РґРёР°РїР°Р·РѕРЅ [8:00 ; 22:00)
         LocalDateTime currentTime = LocalDateTime.now();
-        if (currentTime.isAfter(card.getTIME_END())) { // если текущие дата и время больше даты и времени
-            System.out.printf("Абонемент номер %d просрочен\n", card.getNUMBER_OF_CARD());
+        if (currentTime.isAfter(card.getTIME_END())) { // РµСЃР»Рё С‚РµРєСѓС‰РёРµ РґР°С‚Р° Рё РІСЂРµРјСЏ Р±РѕР»СЊС€Рµ РґР°С‚С‹ Рё РІСЂРµРјРµРЅРё
+            System.out.printf("РђР±РѕРЅРµРјРµРЅС‚ РЅРѕРјРµСЂ %d РїСЂРѕСЃСЂРѕС‡РµРЅ\n", card.getNUMBER_OF_CARD());
             return false;
-        } else if (currentTime.toLocalTime().isBefore(LocalTime.of(8, 0))  // если время меньше 8:00 и больше 22:00
-                || currentTime.toLocalTime().isAfter(LocalTime.of(21, 59))) { //  , то не пускать
-            System.out.println("Фитнес клуб еще закрыт, время работы с 08:00 до 22:00");
+        } else if (currentTime.toLocalTime().isBefore(LocalTime.of(8, 0))  // РµСЃР»Рё РІСЂРµРјСЏ РјРµРЅСЊС€Рµ 8:00 Рё Р±РѕР»СЊС€Рµ 22:00
+                || currentTime.toLocalTime().isAfter(LocalTime.of(21, 59))) { //  , С‚Рѕ РЅРµ РїСѓСЃРєР°С‚СЊ
+            System.out.println("Р¤РёС‚РЅРµСЃ РєР»СѓР± РµС‰Рµ Р·Р°РєСЂС‹С‚, РІСЂРµРјСЏ СЂР°Р±РѕС‚С‹ СЃ 08:00 РґРѕ 22:00");
             return false;
         } else if (card.getTYPE() == CardType.DAY) {
-            if (currentTime.toLocalTime().isBefore(card.getTYPE().getReleaseTime())) { // дневной может пройти только до 16 часов
-                System.out.println("Ваше время посещения с 8:00 до 16:00");
+            if (currentTime.toLocalTime().isBefore(card.getTYPE().getReleaseTime())) { // РґРЅРµРІРЅРѕР№ РјРѕР¶РµС‚ РїСЂРѕР№С‚Рё С‚РѕР»СЊРєРѕ РґРѕ 16 С‡Р°СЃРѕРІ
+                System.out.println("Р’Р°С€Рµ РІСЂРµРјСЏ РїРѕСЃРµС‰РµРЅРёСЏ СЃ 8:00 РґРѕ 16:00");
                 return false;
             }
         }
         return true;
     }
 
-    private boolean checkZone(Card card) { // не зарегистрирован ли абонемент в одной из зон?
+    private boolean checkZone(Card card) { // РЅРµ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ Р»Рё Р°Р±РѕРЅРµРјРµРЅС‚ РІ РѕРґРЅРѕР№ РёР· Р·РѕРЅ?
         for (int i = 0; i < allZones.length; i++) {
             for (int j = 0; j < allZones[i].length; j++) {
                 if (allZones[i][j] == card) {
-                    System.out.printf("Абонемент №%d уже зарегистрирован в зоне \"%s\" \n",
+                    System.out.printf("РђР±РѕРЅРµРјРµРЅС‚ С™%d СѓР¶Рµ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ РІ Р·РѕРЅРµ \"%s\" \n",
                             card.getNUMBER_OF_CARD(), zonesName[i]);
                     return false;
                 }
@@ -118,16 +118,16 @@ public class Fitness {
     }
 
     private void printInfoOneCard(Card[] zone, Card card) {
-        System.out.printf("Абонемент №%d: %s %s, посещаемая зона - %s\n", card.getNUMBER_OF_CARD(),
+        System.out.printf("РђР±РѕРЅРµРјРµРЅС‚ С™%d: %s %s, РїРѕСЃРµС‰Р°РµРјР°СЏ Р·РѕРЅР° - %s\n", card.getNUMBER_OF_CARD(),
                 card.getVISITOR().getLastName(), card.getVISITOR().getFirstName(), map.get(zone));
         LocalDateTime now = LocalDateTime.now();
-        System.out.printf("Дата и время посещения : %s %s:%s:%s\n", now.toLocalDate(), now.getHour(),
+        System.out.printf("Р”Р°С‚Р° Рё РІСЂРµРјСЏ РїРѕСЃРµС‰РµРЅРёСЏ : %s %s:%s:%s\n", now.toLocalDate(), now.getHour(),
                 now.getMinute(), now.getSecond());
     }
 
     protected void printInfoAllCard() {
         for (Card[] all : allZones) {
-            System.out.printf("\nВ зоне \"%s\" в текущий момент зарегистрированы:\n", map.get(all));
+            System.out.printf("\nР’ Р·РѕРЅРµ \"%s\" РІ С‚РµРєСѓС‰РёР№ РјРѕРјРµРЅС‚ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅС‹:\n", map.get(all));
             for (Card zone : all) {
 
                 System.out.println(zone);
@@ -136,4 +136,3 @@ public class Fitness {
         }
     }
 }
-

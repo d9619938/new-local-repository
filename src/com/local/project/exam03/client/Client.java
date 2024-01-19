@@ -42,7 +42,7 @@ public class Client implements Runnable {
                 Thread threadWrithe = new Thread(()-> {   // отдельный поток для отправки сообщений на сервер
                     Scanner scanner = new Scanner(System.in);
                     System.out.println("""
-                            Введите тект сообщения или команду:
+                            Введите текст сообщения или команду:
                             - '/send и путь к файлу' для загрузки файла на сервер
                             - '/get_files' для получения информации о файлах хранящихся на сервере
                             - '/get и имя файла' для получения файла
@@ -81,7 +81,7 @@ public class Client implements Runnable {
 
                         }  else {
                             try {
-                                service.writheMessage(new Message(str));  // отправвка обычного текстового сообщения
+                                service.writheMessage(new Message(str));  // отправка обычного текстового сообщения
                             } catch (IOException e) {
                                 System.out.println("Ошибка соединения, необходимо переподключиться");
                                 throw new RuntimeException();

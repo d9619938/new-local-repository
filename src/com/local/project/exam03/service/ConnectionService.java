@@ -27,7 +27,7 @@ public class ConnectionService implements AutoCloseable {
             outputStream.close();
             connectionSocket.close();
         } catch (IOException e) {
-            System.out.println("Ошибка во врем язакрытия ресурсов");
+            System.out.println("Ошибка во время закрытия ресурсов");
             System.out.println(e.getMessage());
         }
     }

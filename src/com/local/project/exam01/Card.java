@@ -7,24 +7,24 @@ import java.time.LocalTime;
 public class Card {
 
     private static int count;
-    private final int NUMBER_OF_CARD; // порядковый номер абонемента
-    private final CardType TYPE;         // тип абонемента
-    private final LocalDate DATE_START;     // дата начала действия абонемента
-    private final LocalDateTime TIME_START;         // время покупки
-    private LocalDate dateEnd;  // дата окончания срока действия абонемента
-    private LocalDateTime TIME_END;          // время окончания действия
-    private final Visitor VISITOR;           // данные гостя
+    private final int NUMBER_OF_CARD; // РїРѕСЂСЏРґРєРѕРІС‹Р№ РЅРѕРјРµСЂ Р°Р±РѕРЅРµРјРµРЅС‚Р°
+    private final CardType TYPE;         // С‚РёРї Р°Р±РѕРЅРµРјРµРЅС‚Р°
+    private final LocalDate DATE_START;     // РґР°С‚Р° РЅР°С‡Р°Р»Р° РґРµР№СЃС‚РІРёСЏ Р°Р±РѕРЅРµРјРµРЅС‚Р°
+    private final LocalDateTime TIME_START;         // РІСЂРµРјСЏ РїРѕРєСѓРїРєРё
+    private LocalDate dateEnd;  // РґР°С‚Р° РѕРєРѕРЅС‡Р°РЅРёСЏ СЃСЂРѕРєР° РґРµР№СЃС‚РІРёСЏ Р°Р±РѕРЅРµРјРµРЅС‚Р°
+    private LocalDateTime TIME_END;          // РІСЂРµРјСЏ РѕРєРѕРЅС‡Р°РЅРёСЏ РґРµР№СЃС‚РІРёСЏ
+    private final Visitor VISITOR;           // РґР°РЅРЅС‹Рµ РіРѕСЃС‚СЏ
 
 
-    public Card(CardType type, LocalDate registrationEndDate, Visitor guest) {// конструктор абонемента
-        // принимает на вход 1)тип абонемента, 2) дату окончания регистрации, 3) информацию о госте
+    public Card(CardType type, LocalDate registrationEndDate, Visitor guest) {// РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Р°Р±РѕРЅРµРјРµРЅС‚Р°
+        // РїСЂРёРЅРёРјР°РµС‚ РЅР° РІС…РѕРґ 1)С‚РёРї Р°Р±РѕРЅРµРјРµРЅС‚Р°, 2) РґР°С‚Сѓ РѕРєРѕРЅС‡Р°РЅРёСЏ СЂРµРіРёСЃС‚СЂР°С†РёРё, 3) РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РіРѕСЃС‚Рµ
         this.TYPE = type;
-        this.DATE_START = LocalDate.now(); // дата регистрации по дефолту задается как текущая
-        this.TIME_START = DATE_START.atTime(LocalTime.now()); // время регистрации берется из даты регистрации
-        setDateEnd(registrationEndDate); // окончание действия устанавливаем через сеттер с проверкой типа
-        // абонемента
+        this.DATE_START = LocalDate.now(); // РґР°С‚Р° СЂРµРіРёСЃС‚СЂР°С†РёРё РїРѕ РґРµС„РѕР»С‚Сѓ Р·Р°РґР°РµС‚СЃСЏ РєР°Рє С‚РµРєСѓС‰Р°СЏ
+        this.TIME_START = DATE_START.atTime(LocalTime.now()); // РІСЂРµРјСЏ СЂРµРіРёСЃС‚СЂР°С†РёРё Р±РµСЂРµС‚СЃСЏ РёР· РґР°С‚С‹ СЂРµРіРёСЃС‚СЂР°С†РёРё
+        setDateEnd(registrationEndDate); // РѕРєРѕРЅС‡Р°РЅРёРµ РґРµР№СЃС‚РІРёСЏ СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј С‡РµСЂРµР· СЃРµС‚С‚РµСЂ СЃ РїСЂРѕРІРµСЂРєРѕР№ С‚РёРїР°
+        // Р°Р±РѕРЅРµРјРµРЅС‚Р°
         this.VISITOR = guest;
-        this.NUMBER_OF_CARD = ++count;          // задаем порядковый номер абонемента
+        this.NUMBER_OF_CARD = ++count;          // Р·Р°РґР°РµРј РїРѕСЂСЏРґРєРѕРІС‹Р№ РЅРѕРјРµСЂ Р°Р±РѕРЅРµРјРµРЅС‚Р°
     }
 
     public CardType getTYPE() {
@@ -54,9 +54,9 @@ public class Card {
 
     public void setDateEnd(LocalDate dateEnd) {
         if (dateEnd == null || dateEnd.isBefore(DATE_START) || dateEnd.equals(DATE_START)) {
-            throw new IllegalArgumentException("введена не корректная дата окончания действия абонемента!");
-        } else if (TYPE == CardType.ONE_TIME) { // если тип абонемента "разовый", то устанавливаем
-            // дату окончания действия абонемента рег.+1 день
+            throw new IllegalArgumentException("РІРІРµРґРµРЅР° РЅРµ РєРѕСЂСЂРµРєС‚РЅР°СЏ РґР°С‚Р° РѕРєРѕРЅС‡Р°РЅРёСЏ РґРµР№СЃС‚РІРёСЏ Р°Р±РѕРЅРµРјРµРЅС‚Р°!");
+        } else if (TYPE == CardType.ONE_TIME) { // РµСЃР»Рё С‚РёРї Р°Р±РѕРЅРµРјРµРЅС‚Р° "СЂР°Р·РѕРІС‹Р№", С‚Рѕ СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј
+            // РґР°С‚Сѓ РѕРєРѕРЅС‡Р°РЅРёСЏ РґРµР№СЃС‚РІРёСЏ Р°Р±РѕРЅРµРјРµРЅС‚Р° СЂРµРі.+1 РґРµРЅСЊ
             this.dateEnd = DATE_START.plusDays(1);
         } else {
             this.dateEnd = dateEnd;
@@ -66,14 +66,13 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Информация по абонементу{" +
-                "регистрационный номер " + NUMBER_OF_CARD +
-                ", тип=" + TYPE +
-                ", дата начала действия=" + DATE_START +
-                ", дата окончания действия=" + dateEnd +
-                ", \nгость=" + VISITOR +
+        return "РРЅС„РѕСЂРјР°С†РёСЏ РїРѕ Р°Р±РѕРЅРµРјРµРЅС‚Сѓ{" +
+                "СЂРµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ РЅРѕРјРµСЂ " + NUMBER_OF_CARD +
+                ", С‚РёРї=" + TYPE +
+                ", РґР°С‚Р° РЅР°С‡Р°Р»Р° РґРµР№СЃС‚РІРёСЏ=" + DATE_START +
+                ", РґР°С‚Р° РѕРєРѕРЅС‡Р°РЅРёСЏ РґРµР№СЃС‚РІРёСЏ=" + dateEnd +
+                ", \nРіРѕСЃС‚СЊ=" + VISITOR +
                 '}';
     }
 
 }
-

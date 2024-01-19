@@ -1,11 +1,11 @@
 package com.local.project.exam02;
 
 public enum MenuItems {
-    START_NEW_GAME("Начать игру"),
-    BACK_TO_GAME("Вернуться к игре"),
-    EXIT_GAME("Выйти из игры"),
-    SAVE_GAME("Сохранить игру"),
-    GO_TO_SAVE_GAME("Загрузить иргу");
+    START_NEW_GAME("РќР°С‡Р°С‚СЊ РёРіСЂСѓ"),
+    BACK_TO_GAME("Р’РµСЂРЅСѓС‚СЊСЃСЏ Рє РёРіСЂРµ"),
+    EXIT_GAME("Р’С‹Р№С‚Рё РёР· РёРіСЂС‹"),
+    SAVE_GAME("РЎРѕС…СЂР°РЅРёС‚СЊ РёРіСЂСѓ"),
+    GO_TO_SAVE_GAME("Р—Р°РіСЂСѓР·РёС‚СЊ РёСЂРіСѓ");
 
     private final String name;
     MenuItems(String name){

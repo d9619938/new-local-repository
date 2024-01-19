@@ -25,33 +25,33 @@ public class Menu {
 
     public void startNewGame() {
         game.printStarsSting();
-        System.out.println("\n* Начало игры *");
+        System.out.println("\n* РќР°С‡Р°Р»Рѕ РёРіСЂС‹ *");
         game.setFirstParagraph();
         game.guessGenerated(game.getUser().getParagraph());
     }
 
     public void backToGame() {
         game.printStarsSting();
-        System.out.println("\n* Выбран пункт - " + MenuItems.BACK_TO_GAME + " *");
+        System.out.println("\n* Р’С‹Р±СЂР°РЅ РїСѓРЅРєС‚ - " + MenuItems.BACK_TO_GAME + " *");
         game.guessGenerated(game.getUser().getParagraph());
     }
 
     public void exitGame() {
         game.printStarsSting();
-        System.out.println("\nВы уверены что хотите " + MenuItems.EXIT_GAME.toString().toLowerCase() + "?");
-        System.out.printf("\nВыберите один из вариантов ответов и ведите на клавиатуре целое число от 1 до 2\n");
+        System.out.println("\nР’С‹ СѓРІРµСЂРµРЅС‹ С‡С‚Рѕ С…РѕС‚РёС‚Рµ " + MenuItems.EXIT_GAME.toString().toLowerCase() + "?");
+        System.out.printf("\nР’С‹Р±РµСЂРёС‚Рµ РѕРґРёРЅ РёР· РІР°СЂРёР°РЅС‚РѕРІ РѕС‚РІРµС‚РѕРІ Рё РІРµРґРёС‚Рµ РЅР° РєР»Р°РІРёР°С‚СѓСЂРµ С†РµР»РѕРµ С‡РёСЃР»Рѕ РѕС‚ 1 РґРѕ 2\n");
         System.out.println("1. " + MenuItems.EXIT_GAME);
-        System.out.println("2. Вернуться в основное меню");
+        System.out.println("2. Р’РµСЂРЅСѓС‚СЊСЃСЏ РІ РѕСЃРЅРѕРІРЅРѕРµ РјРµРЅСЋ");
         Scanner scanner = new Scanner(System.in);
         int number;
         while (scanner.hasNextInt()) {
             number = scanner.nextInt();
             if (number < 1 || number > 2)
-                System.out.println("\nПопробуйте снова\n");
+                System.out.println("\nРџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°\n");
             else
                 switch (number) {
                     case 1 -> {
-                        System.out.println("*** ИГРА ЗАВЕРШЕНА ***");
+                        System.out.println("*** РР“Р Рђ Р—РђР’Р•Р РЁР•РќРђ ***");
                         System.exit(1);
                     }
                     case 2 -> backToMenu();
@@ -62,22 +62,22 @@ public class Menu {
 
     public void saveGame() {
         game.printStarsSting();
-        System.out.println("\n* Выбран пункт - " + MenuItems.SAVE_GAME + " *");
+        System.out.println("\n* Р’С‹Р±СЂР°РЅ РїСѓРЅРєС‚ - " + MenuItems.SAVE_GAME + " *");
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(game.getUser().getPathUserFile()));
             bufferedWriter.write(game.getUser().getParagraph());
             bufferedWriter.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            System.out.println("Ошибка сохранения игры");
+            System.out.println("РћС€РёР±РєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ РёРіСЂС‹");
         }
-        System.out.println("Игра сохранена под параграфом - " + game.getUser().getParagraph());
+        System.out.println("РРіСЂР° СЃРѕС…СЂР°РЅРµРЅР° РїРѕРґ РїР°СЂР°РіСЂР°С„РѕРј - " + game.getUser().getParagraph());
         backToMenu();
     }
 
     public void goToSaveGame() {
         game.printStarsSting();
-        System.out.println("\n* Выбран пункт - " + MenuItems.GO_TO_SAVE_GAME + " *");
+        System.out.println("\n* Р’С‹Р±СЂР°РЅ РїСѓРЅРєС‚ - " + MenuItems.GO_TO_SAVE_GAME + " *");
 
         try {
             bufferedReader = new BufferedReader(new FileReader(game.getUser().getPathUserFile()));
@@ -85,35 +85,35 @@ public class Menu {
             while ((str = bufferedReader.readLine()) != null) {
                 game.getUser().setParagraph(str);
             }
-            System.out.println("Загружен параграф - " + game.getUser().getParagraph());
+            System.out.println("Р—Р°РіСЂСѓР¶РµРЅ РїР°СЂР°РіСЂР°С„ - " + game.getUser().getParagraph());
             backToMenu();
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
-            System.out.println("файл не найден");
+            System.out.println("С„Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ");
             backToMenu();
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            System.out.println("ошибка чтения сохраненных данных игрока из файла");
+            System.out.println("РѕС€РёР±РєР° С‡С‚РµРЅРёСЏ СЃРѕС…СЂР°РЅРµРЅРЅС‹С… РґР°РЅРЅС‹С… РёРіСЂРѕРєР° РёР· С„Р°Р№Р»Р°");
         }
     }
 
     public void backToMenu() {
-        System.out.println("\n\nПУНКТЫ ОТНОВНОГО МЕНЮ:\n");
+        System.out.println("\n\nРџРЈРќРљРўР« РћРўРќРћР’РќРћР“Рћ РњР•РќР®:\n");
 
         AtomicInteger menuLine = new AtomicInteger();
         Scanner scanner = new Scanner(System.in);
         int number;
 
-           // новый или зарегистрированный игрок, который не успел начать игру.
+        // РЅРѕРІС‹Р№ РёР»Рё Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅС‹Р№ РёРіСЂРѕРє, РєРѕС‚РѕСЂС‹Р№ РЅРµ СѓСЃРїРµР» РЅР°С‡Р°С‚СЊ РёРіСЂСѓ.
         if (game.getUser().getParagraph() == null && !game.getUser().getPathUserFile().exists()) {
             Arrays.stream(MenuItems.values())
                     .filter(x -> !x.equals(MenuItems.BACK_TO_GAME) && !x.equals(MenuItems.SAVE_GAME) && !x.equals(MenuItems.GO_TO_SAVE_GAME))
                     .forEach(x -> System.out.printf("%d. %s\n", menuLine.incrementAndGet(), x));
-            System.out.printf("\nВыберите один из вариантов ответов и ведите на клавиатуре целое число от 1 до %d\n", menuLine.get());
+            System.out.printf("\nР’С‹Р±РµСЂРёС‚Рµ РѕРґРёРЅ РёР· РІР°СЂРёР°РЅС‚РѕРІ РѕС‚РІРµС‚РѕРІ Рё РІРµРґРёС‚Рµ РЅР° РєР»Р°РІРёР°С‚СѓСЂРµ С†РµР»РѕРµ С‡РёСЃР»Рѕ РѕС‚ 1 РґРѕ %d\n", menuLine.get());
             while (scanner.hasNextInt()) {
                 number = scanner.nextInt();
                 if (number < 1 || number > menuLine.get()) {
-                    System.out.println("\nПопробуйте снова\n");
+                    System.out.println("\nРџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°\n");
                 } else {
                     switch (number) {
                         case 1 -> game.getUser().StartGame();
@@ -123,20 +123,20 @@ public class Menu {
             }
 
 
-            // игрок есть в списке игроков и есть сохраненная игра. Это первый вход после сохранения.
+            // РёРіСЂРѕРє РµСЃС‚СЊ РІ СЃРїРёСЃРєРµ РёРіСЂРѕРєРѕРІ Рё РµСЃС‚СЊ СЃРѕС…СЂР°РЅРµРЅРЅР°СЏ РёРіСЂР°. Р­С‚Рѕ РїРµСЂРІС‹Р№ РІС…РѕРґ РїРѕСЃР»Рµ СЃРѕС…СЂР°РЅРµРЅРёСЏ.
         }else if (game.getUser().getParagraph() == null && game.getUser().getPathUserFile().exists()) {
             Arrays.stream(MenuItems.values())
                     .filter(x ->
                             !x.equals(MenuItems.BACK_TO_GAME) &&
-                            !x.equals(MenuItems.SAVE_GAME)
+                                    !x.equals(MenuItems.SAVE_GAME)
                     )
                     .forEach(x -> System.out.printf("%d. %s\n", menuLine.incrementAndGet(), x));
-            System.out.printf("\nВыберите один из вариантов ответов и ведите на клавиатуре целое число от 1 до %d\n", menuLine.get());
+            System.out.printf("\nР’С‹Р±РµСЂРёС‚Рµ РѕРґРёРЅ РёР· РІР°СЂРёР°РЅС‚РѕРІ РѕС‚РІРµС‚РѕРІ Рё РІРµРґРёС‚Рµ РЅР° РєР»Р°РІРёР°С‚СѓСЂРµ С†РµР»РѕРµ С‡РёСЃР»Рѕ РѕС‚ 1 РґРѕ %d\n", menuLine.get());
             while (true) {
                 if (scanner.hasNextInt()) {
                     number = scanner.nextInt();
                     if (number < 1 || number > menuLine.get()) {
-                        System.out.println("\nПопробуйте снова\n");
+                        System.out.println("\nРџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°\n");
                     } else {
                         switch (number) {
                             case 1 -> game.getUser().StartGame();
@@ -146,21 +146,21 @@ public class Menu {
                     }
                 } else {
                     scanner.next();
-                    System.out.println("\nПопробуйте снова\n");
+                    System.out.println("\nРџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°\n");
                 }
             }
 
 
-            // игрок есть в списке игроков и есть сохраненная игра, есть прогресс
+            // РёРіСЂРѕРє РµСЃС‚СЊ РІ СЃРїРёСЃРєРµ РёРіСЂРѕРєРѕРІ Рё РµСЃС‚СЊ СЃРѕС…СЂР°РЅРµРЅРЅР°СЏ РёРіСЂР°, РµСЃС‚СЊ РїСЂРѕРіСЂРµСЃСЃ
         }else if (game.getUser().getParagraph() != null && game.getUser().getPathUserFile().exists()) {
             Arrays.stream(MenuItems.values())
                     .forEach(x -> System.out.printf("%d. %s\n", menuLine.incrementAndGet(), x));
-            System.out.printf("\nВыберите один из вариантов ответов и ведите на клавиатуре целое число от 1 до %d\n", menuLine.get());
+            System.out.printf("\nР’С‹Р±РµСЂРёС‚Рµ РѕРґРёРЅ РёР· РІР°СЂРёР°РЅС‚РѕРІ РѕС‚РІРµС‚РѕРІ Рё РІРµРґРёС‚Рµ РЅР° РєР»Р°РІРёР°С‚СѓСЂРµ С†РµР»РѕРµ С‡РёСЃР»Рѕ РѕС‚ 1 РґРѕ %d\n", menuLine.get());
             while (true) {
                 if (scanner.hasNextInt()) {
                     number = scanner.nextInt();
                     if (number < 1 || number > menuLine.get()) {
-                        System.out.println("\nПопробуйте снова\n");
+                        System.out.println("\nРџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°\n");
                     } else {
                         switch (number) {
                             case 1 -> game.getUser().StartGame();
@@ -172,35 +172,35 @@ public class Menu {
                     }
                 } else {
                     scanner.next();
-                    System.out.println("\nПопробуйте снова\n");
+                    System.out.println("\nРџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°\n");
                 }
             }
 
 
-            // игрок есть в списке игроков, но сохранений нет
+            // РёРіСЂРѕРє РµСЃС‚СЊ РІ СЃРїРёСЃРєРµ РёРіСЂРѕРєРѕРІ, РЅРѕ СЃРѕС…СЂР°РЅРµРЅРёР№ РЅРµС‚
         } else if (game.getUser().getParagraph() != null && !game.getUser().getPathUserFile().exists()) {
-                Arrays.stream(MenuItems.values())
-                        .filter(x-> !x.equals(MenuItems.GO_TO_SAVE_GAME))
-                        .forEach(x -> System.out.printf("%d. %s\n", menuLine.incrementAndGet(), x));
-                System.out.printf("\nВыберите один из вариантов ответов и ведите на клавиатуре целое число от 1 до %d\n", menuLine.get());
-                while (true) {
-                    if (scanner.hasNextInt()) {
-                        number = scanner.nextInt();
-                        if (number < 1 || number > menuLine.get()) {
-                            System.out.println("\nПопробуйте снова\n");
-                        } else {
-                            switch (number) {
-                                case 1 -> game.getUser().StartGame();
-                                case 2 -> game.getUser().beckToGame();
-                                case 3 -> game.getUser().exitGame();
-                                case 4 -> game.getUser().saveGame();
-                            }
-                        }
+            Arrays.stream(MenuItems.values())
+                    .filter(x-> !x.equals(MenuItems.GO_TO_SAVE_GAME))
+                    .forEach(x -> System.out.printf("%d. %s\n", menuLine.incrementAndGet(), x));
+            System.out.printf("\nР’С‹Р±РµСЂРёС‚Рµ РѕРґРёРЅ РёР· РІР°СЂРёР°РЅС‚РѕРІ РѕС‚РІРµС‚РѕРІ Рё РІРµРґРёС‚Рµ РЅР° РєР»Р°РІРёР°С‚СѓСЂРµ С†РµР»РѕРµ С‡РёСЃР»Рѕ РѕС‚ 1 РґРѕ %d\n", menuLine.get());
+            while (true) {
+                if (scanner.hasNextInt()) {
+                    number = scanner.nextInt();
+                    if (number < 1 || number > menuLine.get()) {
+                        System.out.println("\nРџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°\n");
                     } else {
-                        scanner.next();
-                        System.out.println("\nПопробуйте снова\n");
+                        switch (number) {
+                            case 1 -> game.getUser().StartGame();
+                            case 2 -> game.getUser().beckToGame();
+                            case 3 -> game.getUser().exitGame();
+                            case 4 -> game.getUser().saveGame();
+                        }
                     }
+                } else {
+                    scanner.next();
+                    System.out.println("\nРџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°\n");
                 }
-        }
+            }
         }
     }
+}

@@ -48,13 +48,13 @@ public class ConnectionThread implements Runnable {
                         }
                     } else {
                         connectionService.writheMessage(new Message("Файл с указанным именем уже существует," +
-                                " проверьте спикок файлов на сервере"));
+                                " проверьте список файлов на сервере"));
                     }
 
 
 
 
-                } else if(message.getText().equals("/get_files")){    // собщение клиенту о файлах хранящихся на сервере
+                } else if(message.getText().equals("/get_files")){    // сообщение клиенту о файлах хранящихся на сервере
                     StringJoiner joiner = new StringJoiner("\n");
                     for (Map.Entry<File, String> x : server.getFileMap().entrySet()) {
                         String line = "- " + x.getKey().getName() + " = " + x.getValue();

@@ -3,9 +3,9 @@ package com.local.project.exam01;
 import java.time.LocalTime;
 
 public enum CardType {
-    ONE_TIME("Разовый", LocalTime.of(8,0), LocalTime.of(22,0)),
-    DAY ("Дневной",  LocalTime.of(8,0), LocalTime.of(16,0)),
-    FULL("Полный", LocalTime.of(8,0), LocalTime.of(22,0));
+    ONE_TIME("Р Р°Р·РѕРІС‹Р№", LocalTime.of(8,0), LocalTime.of(22,0)),
+    DAY ("Р”РЅРµРІРЅРѕР№",  LocalTime.of(8,0), LocalTime.of(16,0)),
+    FULL("РџРѕР»РЅС‹Р№", LocalTime.of(8,0), LocalTime.of(22,0));
 
 private final String name;
 private final LocalTime entryTime;

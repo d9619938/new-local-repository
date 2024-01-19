@@ -2,7 +2,7 @@ package com.local.project.exam01;
 
 import java.time.LocalDate;
 
-// Данные о владельце: имя, фамилия, год рождения.
+// Р”Р°РЅРЅС‹Рµ Рѕ РІР»Р°РґРµР»СЊС†Рµ: РёРјСЏ, С„Р°РјРёР»РёСЏ, РіРѕРґ СЂРѕР¶РґРµРЅРёСЏ.
 public class Visitor {
     private String firstName;
     private String lastName;
@@ -21,8 +21,8 @@ public class Visitor {
 
     public void setFirstName(String firstName) {
         if (firstName == null || firstName.isEmpty() || !Helper.isAlfa(firstName)) {
-             throw new IllegalArgumentException("Ошибка при вводе имени гостя!" +
-                     "\nПовторите ввод используя только буквы!");
+            throw new IllegalArgumentException("РћС€РёР±РєР° РїСЂРё РІРІРѕРґРµ РёРјРµРЅРё РіРѕСЃС‚СЏ!" +
+                    "\nРџРѕРІС‚РѕСЂРёС‚Рµ РІРІРѕРґ РёСЃРїРѕР»СЊР·СѓСЏ С‚РѕР»СЊРєРѕ Р±СѓРєРІС‹!");
         } else {
             this.firstName = firstName;
         }
@@ -35,8 +35,8 @@ public class Visitor {
 
     public void setLastName(String lastName) {
         if (lastName == null || lastName.isEmpty() || !Helper.isAlfa(lastName)) {
-            throw new IllegalArgumentException("Ошибка при вводе фамилии гостя!" +
-                    "\nПовторите ввод используя только буквы!");
+            throw new IllegalArgumentException("РћС€РёР±РєР° РїСЂРё РІРІРѕРґРµ С„Р°РјРёР»РёРё РіРѕСЃС‚СЏ!" +
+                    "\nРџРѕРІС‚РѕСЂРёС‚Рµ РІРІРѕРґ РёСЃРїРѕР»СЊР·СѓСЏ С‚РѕР»СЊРєРѕ Р±СѓРєРІС‹!");
         } else {
             this.lastName = lastName;
         }
@@ -49,13 +49,13 @@ public class Visitor {
     public void setYearOfBirth(LocalDate yearOfBirth) {
         if(yearOfBirth == null || yearOfBirth.isBefore(LocalDate.now().minusYears(80))
                 || yearOfBirth.isAfter(LocalDate.now().minusYears(18))){
-            throw new IllegalArgumentException("Внимание, возрастное ограничение: Продажа абонемента осуществляется лицам от 18 до 80 лет");
+            throw new IllegalArgumentException("Р’РЅРёРјР°РЅРёРµ, РІРѕР·СЂР°СЃС‚РЅРѕРµ РѕРіСЂР°РЅРёС‡РµРЅРёРµ: РџСЂРѕРґР°Р¶Р° Р°Р±РѕРЅРµРјРµРЅС‚Р° РѕСЃСѓС‰РµСЃС‚РІР»СЏРµС‚СЃСЏ Р»РёС†Р°Рј РѕС‚ 18 РґРѕ 80 Р»РµС‚");
         }
         this.yearOfBirth = yearOfBirth;
     }
 
     @Override
     public String toString() {
-        return "Имя: " + getFirstName() + ", Фамилия: " + getLastName() + ", дата рождения: " + getYearOfBirth();
+        return "РРјСЏ: " + getFirstName() + ", Р¤Р°РјРёР»РёСЏ: " + getLastName() + ", РґР°С‚Р° СЂРѕР¶РґРµРЅРёСЏ: " + getYearOfBirth();
     }
 }

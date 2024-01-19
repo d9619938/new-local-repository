@@ -39,7 +39,7 @@ public class Sender extends Message {
         } else {
             System.out.println("Файл не прошел проверку");
             System.out.println("по данному пути располагается файл? - " + file.isFile());
-            System.out.println("размер файла перевышает " + maxFileSizeMb + "Мб? - " + (file.length() > maxFileSizeMb * (1024 * 1024)));
+            System.out.println("размер файла превышает " + maxFileSizeMb + "Мб? - " + (file.length() > maxFileSizeMb * (1024 * 1024)));
             System.out.println("описание файла превышает допустимый размер? - " + (description.length() > maxDescriptionLength));
             System.out.println("Повторите попытку учитывая результаты проверки");
         }

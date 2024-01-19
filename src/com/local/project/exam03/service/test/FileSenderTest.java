@@ -38,7 +38,7 @@ public class FileSenderTest {
         os = connectionSocket.getOutputStream();
         os.write(mybytearray,0,mybytearray.length);
 
-        bos.flush();
+        os.flush();
         bos.close();
         bis.close();
     }

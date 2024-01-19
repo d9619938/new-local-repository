@@ -30,9 +30,9 @@ public class User implements Serializable {
     }
 
     protected void setLogin(String login){
-            this.login = Objects.requireNonNull(login, "login не может быть null");
-            pathUserFile = new File("C:\\Users\\d9619\\IdeaProjects\\new-local-repository\\" +
-                    "src\\com\\local\\project\\exam02\\save_archive\\"+ login +".txt");
+            this.login = Objects.requireNonNull(login, "login РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null");
+            pathUserFile = new File("/Users/dmitrijbogdanov/IdeaProjects/my-training/new-local-repository/" +
+                    "src/com/local/project/exam02/save_archive/"+ login +".txt");
     }
     protected String getLogin() {
         return login;
